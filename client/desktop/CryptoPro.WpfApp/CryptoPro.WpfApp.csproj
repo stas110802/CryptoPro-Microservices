@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net9.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UseWPF>true</UseWPF>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Remove="AssemblyInfo.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="83cacf4b2c14c3d885f1dd93518b5be0.jpg" />
+      <None Remove="Assets\83cacf4b2c14c3d885f1dd93518b5be0.jpg" />
+      <None Remove="Assets\logo.png" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="AssemblyInfo.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="MVVM\ViewModels\Windows\" />
+      <Folder Include="MVVM\Views\Windows\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+      <PackageReference Include="FontAwesome5" Version="2.1.11" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Resource Include="Assets\83cacf4b2c14c3d885f1dd93518b5be0.jpg" />
+      <Resource Include="Assets\logo.png" />
+    </ItemGroup>
+
+</Project>

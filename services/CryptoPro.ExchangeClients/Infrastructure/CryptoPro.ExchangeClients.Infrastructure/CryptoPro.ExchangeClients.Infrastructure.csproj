@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Core\CryptoPro.ExchangeClients.Application\CryptoPro.ExchangeClients.Application.csproj" />
+      <ProjectReference Include="..\..\Core\CryptoPro.ExchangeClients.Domain\CryptoPro.ExchangeClients.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+      <PackageReference Include="RestSharp" Version="112.1.1-alpha.0.4" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Clients\Socket\" />
+    </ItemGroup>
+
+</Project>
