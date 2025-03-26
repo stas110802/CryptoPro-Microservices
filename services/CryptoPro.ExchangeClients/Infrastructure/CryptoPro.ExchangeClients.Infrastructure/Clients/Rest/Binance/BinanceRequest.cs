@@ -1,7 +1,8 @@
 ﻿using CryptoPro.ExchangeClients.Infrastructure.Common;
+using CryptoPro.ExchangeClients.Infrastructure.RestAPI.Requests;
 using RestSharp;
 
-namespace CryptoPro.ExchangeClients.Infrastructure.RestAPI.Requests;
+namespace CryptoPro.ExchangeClients.Infrastructure.Clients.Rest.Binance;
 
 public class BinanceRequest : BaseRequest
 {

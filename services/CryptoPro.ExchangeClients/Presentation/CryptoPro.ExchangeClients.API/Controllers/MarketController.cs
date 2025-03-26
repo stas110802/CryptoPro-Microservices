@@ -1,6 +1,18 @@
-﻿namespace CryptoPro.ExchangeClients.API.Controllers;
+﻿using Microsoft.AspNetCore.Mvc;
 
-public class MarketController
+namespace CryptoPro.ExchangeClients.API.Controllers;
+
+[ApiController]
+[Route("[controller]")]
+public sealed class MarketController : Controller
 {
-    
+    public MarketController()
+    {
+        
+    }
+
+    public IActionResult GetCurrencyInfo()
+    {
+        return Ok();
+    }
 }

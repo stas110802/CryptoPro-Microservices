@@ -1,6 +1,6 @@
 ﻿using CryptoPro.ExchangeClients.Infrastructure.Common;
 
-namespace CryptoPro.ExchangeClients.Infrastructure.RestAPI.Endpoints;
+namespace CryptoPro.ExchangeClients.Infrastructure.Clients.Rest.Binance;
 
 public sealed class BinanceEndpoint : BaseType
 {

@@ -1,8 +1,78 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{A9E5A2F0-019D-4B0B-B098-731A8E370FD8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CryptoPro.ExchangeClients", "CryptoPro.ExchangeClients", "{4250E684-A612-45E8-A41A-0CE9314392C5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{4A70663F-7943-4A01-8D46-DE0DC88070C9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{DBD52AB5-3B4A-4E5A-B971-35C70ADC637F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{C2E50176-7406-484D-95BA-A3A7A138C958}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{CFF7AE4E-F515-4313-B0D6-E609EAEF3518}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoPro.ExchangeClients.Application", "services\CryptoPro.ExchangeClients\Core\CryptoPro.ExchangeClients.Application\CryptoPro.ExchangeClients.Application.csproj", "{C74F35B9-81F9-40CE-9D3A-0582DA6F3453}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoPro.ExchangeClients.Domain", "services\CryptoPro.ExchangeClients\Core\CryptoPro.ExchangeClients.Domain\CryptoPro.ExchangeClients.Domain.csproj", "{D1B01291-30A6-4635-B45B-B4F05E03DCE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoPro.ExchangeClients.Infrastructure", "services\CryptoPro.ExchangeClients\Infrastructure\CryptoPro.ExchangeClients.Infrastructure\CryptoPro.ExchangeClients.Infrastructure.csproj", "{EEE9FF98-B4FE-4E10-973C-F17868558DA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoPro.ExchangeClients.Persistence", "services\CryptoPro.ExchangeClients\Infrastructure\CryptoPro.ExchangeClients.Persistence\CryptoPro.ExchangeClients.Persistence.csproj", "{335E3BBF-FA5F-440B-8ECE-D74CE43D0522}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoPro.ExchangeClients.API", "services\CryptoPro.ExchangeClients\Presentation\CryptoPro.ExchangeClients.API\CryptoPro.ExchangeClients.API.csproj", "{213F6AA3-7C63-4952-885D-2CF2C5A22CD1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "K8S", "K8S", "{DBA967BC-F30C-4457-9528-3BD27692744C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "client", "client", "{55973DA7-A6BF-422C-8A44-8B8820E91722}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "desktop", "desktop", "{AD5C71E6-D723-41E9-888E-6D8A4F444530}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoPro.WpfApp", "client\desktop\CryptoPro.WpfApp\CryptoPro.WpfApp.csproj", "{1D5D248E-E112-49D2-AC2F-9E666A562028}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4250E684-A612-45E8-A41A-0CE9314392C5} = {A9E5A2F0-019D-4B0B-B098-731A8E370FD8}
+		{4A70663F-7943-4A01-8D46-DE0DC88070C9} = {4250E684-A612-45E8-A41A-0CE9314392C5}
+		{DBD52AB5-3B4A-4E5A-B971-35C70ADC637F} = {4250E684-A612-45E8-A41A-0CE9314392C5}
+		{C2E50176-7406-484D-95BA-A3A7A138C958} = {4250E684-A612-45E8-A41A-0CE9314392C5}
+		{CFF7AE4E-F515-4313-B0D6-E609EAEF3518} = {4250E684-A612-45E8-A41A-0CE9314392C5}
+		{C74F35B9-81F9-40CE-9D3A-0582DA6F3453} = {4A70663F-7943-4A01-8D46-DE0DC88070C9}
+		{D1B01291-30A6-4635-B45B-B4F05E03DCE4} = {4A70663F-7943-4A01-8D46-DE0DC88070C9}
+		{EEE9FF98-B4FE-4E10-973C-F17868558DA1} = {DBD52AB5-3B4A-4E5A-B971-35C70ADC637F}
+		{335E3BBF-FA5F-440B-8ECE-D74CE43D0522} = {DBD52AB5-3B4A-4E5A-B971-35C70ADC637F}
+		{213F6AA3-7C63-4952-885D-2CF2C5A22CD1} = {C2E50176-7406-484D-95BA-A3A7A138C958}
+		{AD5C71E6-D723-41E9-888E-6D8A4F444530} = {55973DA7-A6BF-422C-8A44-8B8820E91722}
+		{1D5D248E-E112-49D2-AC2F-9E666A562028} = {AD5C71E6-D723-41E9-888E-6D8A4F444530}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C74F35B9-81F9-40CE-9D3A-0582DA6F3453}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C74F35B9-81F9-40CE-9D3A-0582DA6F3453}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C74F35B9-81F9-40CE-9D3A-0582DA6F3453}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C74F35B9-81F9-40CE-9D3A-0582DA6F3453}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1B01291-30A6-4635-B45B-B4F05E03DCE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1B01291-30A6-4635-B45B-B4F05E03DCE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1B01291-30A6-4635-B45B-B4F05E03DCE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1B01291-30A6-4635-B45B-B4F05E03DCE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEE9FF98-B4FE-4E10-973C-F17868558DA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEE9FF98-B4FE-4E10-973C-F17868558DA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEE9FF98-B4FE-4E10-973C-F17868558DA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEE9FF98-B4FE-4E10-973C-F17868558DA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{335E3BBF-FA5F-440B-8ECE-D74CE43D0522}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{335E3BBF-FA5F-440B-8ECE-D74CE43D0522}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{335E3BBF-FA5F-440B-8ECE-D74CE43D0522}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{335E3BBF-FA5F-440B-8ECE-D74CE43D0522}.Release|Any CPU.Build.0 = Release|Any CPU
+		{213F6AA3-7C63-4952-885D-2CF2C5A22CD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{213F6AA3-7C63-4952-885D-2CF2C5A22CD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{213F6AA3-7C63-4952-885D-2CF2C5A22CD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{213F6AA3-7C63-4952-885D-2CF2C5A22CD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D5D248E-E112-49D2-AC2F-9E666A562028}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D5D248E-E112-49D2-AC2F-9E666A562028}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D5D248E-E112-49D2-AC2F-9E666A562028}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D5D248E-E112-49D2-AC2F-9E666A562028}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

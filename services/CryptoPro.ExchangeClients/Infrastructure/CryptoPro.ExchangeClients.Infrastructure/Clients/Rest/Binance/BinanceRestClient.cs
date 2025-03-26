@@ -1,5 +1,5 @@
 ﻿using System.Globalization;
-using CryptoPro.ExchangeClients.Application;
+using CryptoPro.ExchangeClients.Domain.Clients;
 using CryptoPro.ExchangeClients.Domain.Clients.Models;
 using CryptoPro.ExchangeClients.Infrastructure.RestAPI;
 using CryptoPro.ExchangeClients.Infrastructure.RestAPI.Options;
@@ -10,11 +10,11 @@ using static System.Decimal;
 
 namespace CryptoPro.ExchangeClients.Infrastructure.Clients.Rest.Binance;
 
-public sealed class BinanceClient : IRestExchangeClient
+public sealed class BinanceRestClient : IRestMarketClient
 {
     private readonly RestApiClient<BinanceRequest> _api;
 
-    public BinanceClient(ExchangeApiOptions options)
+    public BinanceRestClient(ExchangeApiOptions options)
     {
         _api = new RestApiClient<BinanceRequest>(options);
     }

@@ -1,6 +1,9 @@
-﻿namespace CryptoPro.WpfApp.ValueObjects;
+﻿using System.Windows.Media;
 
-public class PriceChangePercentage
+namespace CryptoPro.WpfApp.ValueObjects;
+
+public sealed class PriceChangePercentage
 {
-    
+    public double ChangePercentage { get; set; }
+    public Brush PercentageColor { get; set; } = Brushes.Red;
 }

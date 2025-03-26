@@ -1,6 +1,6 @@
 ﻿using CryptoPro.ExchangeClients.Domain.Clients.Models;
 
-namespace CryptoPro.ExchangeClients.Application;
+namespace CryptoPro.ExchangeClients.Domain.Clients;
 
 public interface IRestMarketClient
 {
