@@ -6,10 +6,10 @@ namespace CryptoPro.ExchangeClients.Infrastructure.Clients.Rest.Binance;
 
 public class BinanceRequest : BaseRequest
 {
-    public override BaseRequest Authorize(Dictionary<string, object>? bodyParameters = null)
+    public override BaseRequest Authenticate(Dictionary<string, object>? bodyParameters = null)
     {
         if (RequestOptions == null || ApiOptions == null)
-            throw new NullReferenceException("");
+            throw new NullReferenceException("RequestOptions or ApiOptions cannot be null");
         
         var query = GetQuery(RequestOptions.FullPath);
         if (string.IsNullOrEmpty(query))

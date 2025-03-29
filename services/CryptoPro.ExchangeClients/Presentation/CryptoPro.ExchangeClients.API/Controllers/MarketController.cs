@@ -10,9 +10,5 @@ public sealed class MarketController : Controller
     {
         
     }
-
-    public IActionResult GetCurrencyInfo()
-    {
-        return Ok();
-    }
+    
 }

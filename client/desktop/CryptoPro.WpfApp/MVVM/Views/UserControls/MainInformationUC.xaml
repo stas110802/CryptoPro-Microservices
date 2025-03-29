@@ -88,6 +88,7 @@
                 <DataGrid Background="Black"
                           BorderBrush="Black"
                           IsReadOnly="True"
+                          CanUserReorderColumns="False"
                           VerticalScrollBarVisibility="Hidden"
                           AutoGenerateColumns="False"
                           ColumnHeaderStyle="{StaticResource  CenterGridHeaderStyle}"
@@ -146,15 +147,16 @@
 
                         <!-- 2 column (Name) -->
                         <DataGridTemplateColumn Header="Name"
-                                                SortMemberPath="Name"
+                                                SortMemberPath="FullName"
                                                 HeaderStyle="{StaticResource  LeftGridHeaderStyle}"
                                                 CanUserSort="True"
                                                 CanUserResize="False"
                                                 Width="250">
+                           
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <Image Source="{Binding ImagePath}"
+                                        <Image Source="{Binding ImageUri}"
                                                Height="35"
                                                Width="35" />
                                         <Border Width="10" />
@@ -165,7 +167,7 @@
                                                    VerticalAlignment="Center"
                                                    HorizontalAlignment="Left" />
                                         <Border Width="10" />
-                                        <TextBlock Text="{Binding Name}"
+                                        <TextBlock Text="{Binding ShortName}"
                                                    FontWeight="Medium"
                                                    FontSize="14"
                                                    Foreground="DarkGray"
@@ -178,14 +180,14 @@
 
                         <!-- 3 column (Price) -->
                         <DataGridTemplateColumn Header="Price"
-                                                SortMemberPath="Price"
+                                                SortMemberPath="CurrentPrice"
                                                 HeaderStyle="{StaticResource  RightGridHeaderStyle}"
                                                 CanUserSort="True"
                                                 CanUserResize="False"
                                                 Width="100">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Price, StringFormat='${0:N0}'}"
+                                    <TextBlock Text="{Binding CurrentPrice, StringFormat='${0:N03}'}"
                                                FontWeight="Medium"
                                                FontSize="14"
                                                Foreground="#ebe3d7"
@@ -197,7 +199,7 @@
 
                         <!-- 4 column (24 hours %) -->
                         <DataGridTemplateColumn Header="24h %"
-                                                SortMemberPath="PriceChangePercentage24H.ChangePercentage"
+                                                SortMemberPath="PriceChangePercentage24h"
                                                 HeaderStyle="{StaticResource  RightGridHeaderStyle}"
                                                 CanUserSort="True"
                                                 CanUserResize="False"
@@ -205,19 +207,19 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock
-                                        Text="{Binding PriceChangePercentage24H.ChangePercentage, StringFormat=' {0} %'}"
+                                        Text="{Binding PriceChangePercentage24h, StringFormat=' {0:0.##} %'}"
                                         FontWeight="Medium"
                                         FontSize="14"
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Right"
-                                        Foreground="{Binding PriceChangePercentage24H.PercentageColor}" />
+                                        Foreground="{Binding PriceChangePercentage24hColor}" />
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
 
                         <!-- 5 column (7 day %) -->
                         <DataGridTemplateColumn Header="7d %"
-                                                SortMemberPath="PriceChangePercentage7D.ChangePercentage"
+                                                SortMemberPath="PriceChangePercentage7d"
                                                 HeaderStyle="{StaticResource  RightGridHeaderStyle}"
                                                 CanUserSort="True"
                                                 CanUserResize="False"
@@ -225,12 +227,12 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock
-                                        Text="{Binding PriceChangePercentage7D.ChangePercentage, StringFormat=' {0} %'}"
+                                        Text="{Binding PriceChangePercentage7d, StringFormat=' {0:0.##} %'}"
                                         FontWeight="Medium"
                                         FontSize="14"
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Right"
-                                        Foreground="{Binding PriceChangePercentage7D.PercentageColor}" />
+                                        Foreground="{Binding PriceChangePercentage7dColor}" />
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
@@ -254,16 +256,16 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
 
-                        <!-- 7 column (24 Hour Volume) -->
-                        <DataGridTemplateColumn Header="Volume (24h)"
-                                                SortMemberPath="Volume24H"
+                        <!-- 7 column (Total Volume) -->
+                        <DataGridTemplateColumn Header="Total Volume"
+                                                SortMemberPath="TotalVolume"
                                                 HeaderStyle="{StaticResource  RightGridHeaderStyle}"
                                                 CanUserSort="True"
                                                 CanUserResize="False"
                                                 Width="200">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Volume24H, StringFormat='${0:N0}'}"
+                                    <TextBlock Text="{Binding TotalVolume, StringFormat='${0:N0}'}"
                                                FontWeight="Medium"
                                                FontSize="14"
                                                Foreground="#ebe3d7"

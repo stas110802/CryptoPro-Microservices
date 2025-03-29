@@ -10,4 +10,10 @@
       <ProjectReference Include="..\CryptoPro.ExchangeClients.Domain\CryptoPro.ExchangeClients.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Account\" />
+      <Folder Include="Coin\" />
+      <Folder Include="Market\" />
+    </ItemGroup>
+
 </Project>

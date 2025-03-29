@@ -1,4 +1,4 @@
-﻿namespace CryptoPro.ExchangeClients.Domain.Clients.Models;
+﻿namespace CryptoPro.ExchangeClients.Domain.Clients.Models.Common;
 
 public class CurrencyPair
 {

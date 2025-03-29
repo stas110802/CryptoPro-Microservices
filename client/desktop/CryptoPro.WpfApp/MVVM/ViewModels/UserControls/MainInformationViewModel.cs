@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.IO;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -6,6 +7,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CryptoPro.WpfApp.MVVM.Models;
 using CryptoPro.WpfApp.ValueObjects;
+using Newtonsoft.Json;
 
 namespace CryptoPro.WpfApp.MVVM.ViewModels.UserControls;
 
@@ -37,10 +39,11 @@ public partial class MainInformationViewModel : ObservableObject
         PreviousPageCommand = new RelayCommand(ScrollToPreviousPage);
         NextPageCommand = new RelayCommand(ScrollToNextPage);
 
-        _coins = new ObservableCollection<Coin>();
+        var text = File.ReadAllText(@"D:\response_1743278204571.json");
+        _coins = text.FromJsonWithAutoIncrementId();
+        
         _currentPageCoins = new ObservableCollection<Coin>();
-
-        InitTest();
+        
         UpdatePaginatedItems();
     }
 
@@ -89,34 +92,7 @@ public partial class MainInformationViewModel : ObservableObject
             CurrentPageCoins.Add(item);
         }
     }
-
-    private void InitTest()
-    {       
-        for (int i = 1; i <= 111; i++)
-        {
-            Coins.Add(new Coin
-            {
-                Id = i,
-                FullName = $"Bitcoin {i}",
-                ImagePath = "F:\\soul\\7bf9266f95288cb1f792e328e37253f0.jpg",
-                Name = $"BTC{i}",
-                Price = 87_818,
-                Volume24H = 29_838_294_014,
-                CirculatingSupply = 19_841_762,
-                MarketCap = 1_743_644_070_183,
-                PriceChangePercentage24H = new PriceChangePercentage()
-                {
-                    PercentageColor = Brushes.Green,
-                    ChangePercentage = 0.35d
-                },
-                PriceChangePercentage7D = new PriceChangePercentage()
-                {
-                    PercentageColor = Brushes.Red,
-                    ChangePercentage = -4.33d
-                }
-            });
-        }     
-    }
+    
 
     private void MakePageButtonVisible()
     {

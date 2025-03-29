@@ -1,11 +1,12 @@
 ﻿using System.Globalization;
 using CryptoPro.ExchangeClients.Domain.Clients;
-using CryptoPro.ExchangeClients.Domain.Clients.Models;
+using CryptoPro.ExchangeClients.Domain.Clients.Models.Common;
 using CryptoPro.ExchangeClients.Infrastructure.RestAPI;
 using CryptoPro.ExchangeClients.Infrastructure.RestAPI.Options;
 using Newtonsoft.Json.Linq;
 using RestSharp;
 using CryptoPro.ExchangeClients.Infrastructure.Common;
+using Microsoft.Extensions.Options;
 using static System.Decimal;
 
 namespace CryptoPro.ExchangeClients.Infrastructure.Clients.Rest.Binance;
@@ -14,9 +15,9 @@ public sealed class BinanceRestClient : IRestMarketClient
 {
     private readonly RestApiClient<BinanceRequest> _api;
 
-    public BinanceRestClient(ExchangeApiOptions options)
+    public BinanceRestClient(IOptions<ExchangeApiOptions> options)
     {
-        _api = new RestApiClient<BinanceRequest>(options);
+        _api = new RestApiClient<BinanceRequest>(options.Value);
     }
 
     public async Task<CurrencyPair> GetCurrencyInfoAsync(string currency)
@@ -58,7 +59,7 @@ public sealed class BinanceRestClient : IRestMarketClient
         var query = $"?timestamp={timestamp}&omitZeroBalances=true";
         var response = (await _api
                 .CreateRequest(Method.Get, BinanceEndpoint.AccountInfo, query)
-                .Authorize()
+                .Authenticate()
                 .ExecuteAsync())
             .FromJson<JToken>();
 
@@ -114,7 +115,7 @@ public sealed class BinanceRestClient : IRestMarketClient
             var query = $"{GetSymbolQuery(order.Currency)}&orderId={order.OrderId}";
             var response = await _api
                 .CreateRequest(Method.Delete, BinanceEndpoint.Order, query)
-                .Authorize()
+                .Authenticate()
                 .ExecuteAsync();
 
             var orderStatus = response.FromJson<JToken>()["status"]?.ToString();
@@ -134,7 +135,7 @@ public sealed class BinanceRestClient : IRestMarketClient
 
         var withdrawalResponse = (await _api
                 .CreateRequest(Method.Post, BinanceEndpoint.Withdraw, query)
-                .Authorize()
+                .Authenticate()
                 .ExecuteAsync())
             .FromJson<JToken>();
 
@@ -150,7 +151,7 @@ public sealed class BinanceRestClient : IRestMarketClient
         var result = new List<Order>();
         var response = await _api
             .CreateRequest(Method.Get, BinanceEndpoint.OrderList, query)
-            .Authorize()
+            .Authenticate()
             .ExecuteAsync();
 
         var orders = response.FromJson<JToken>()["orders"];
@@ -180,7 +181,7 @@ public sealed class BinanceRestClient : IRestMarketClient
     {
         var response = await _api
             .CreateRequest(Method.Post, BinanceEndpoint.Order, query)
-            .Authorize()
+            .Authenticate()
             .ExecuteAsync();
 
         var id = response.FromJson<JToken>()["orderId"]?.ToString();

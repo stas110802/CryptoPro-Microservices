@@ -1,4 +1,4 @@
-﻿using CryptoPro.ExchangeClients.Domain.Clients.Models;
+﻿using CryptoPro.ExchangeClients.Domain.Clients.Models.Common;
 
 namespace CryptoPro.ExchangeClients.Domain.Clients;
 
