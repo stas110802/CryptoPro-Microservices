@@ -11,7 +11,7 @@ using static System.Decimal;
 
 namespace CryptoPro.ExchangeClients.Infrastructure.Clients.Rest.Binance;
 
-public sealed class BinanceRestClient : IRestMarketClient
+public sealed class BinanceRestClient : IRestMarketClient, IRestTradeClient, IRestAccountClient
 {
     private readonly RestApiClient<BinanceRequest> _api;
 
@@ -20,7 +20,7 @@ public sealed class BinanceRestClient : IRestMarketClient
         _api = new RestApiClient<BinanceRequest>(options.Value);
     }
 
-    public async Task<CurrencyPair> GetCurrencyInfoAsync(string currency)
+    public async Task<CurrencyPair> GetCurrencyInformationAsync(string currency)
     {
         var query = GetSymbolQuery(currency);
         var response = (await _api
@@ -77,7 +77,7 @@ public sealed class BinanceRestClient : IRestMarketClient
         return balances;
     }
 
-    public async Task<CurrencyBalance> GetCurrencyBalanceAsync(string currency)
+    public async Task<CurrencyBalance> GetCurrencyAccountBalanceAsync(string currency)
     {
         var balances = await GetAccountBalanceAsync();
         foreach (var item in balances)

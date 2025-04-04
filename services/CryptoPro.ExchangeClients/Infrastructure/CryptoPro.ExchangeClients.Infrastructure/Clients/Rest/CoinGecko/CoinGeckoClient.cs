@@ -5,6 +5,7 @@ using CryptoPro.ExchangeClients.Infrastructure.RestAPI;
 using CryptoPro.ExchangeClients.Infrastructure.RestAPI.Options;
 using RestSharp;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json.Linq;
 
 namespace CryptoPro.ExchangeClients.Infrastructure.Clients.Rest.CoinGecko;
 
@@ -12,12 +13,15 @@ public sealed class CoinGeckoClient : IRestDetailCoinClient
 {
     private readonly RestApiClient<CoinGeckoRequest> _api;
 
+    private const string GetCoinDescriptionByIdQuery =
+        "?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false";
+
     public CoinGeckoClient(IOptions<ExchangeApiOptions> options)
     {
         _api = new RestApiClient<CoinGeckoRequest>(options.Value);
     }
 
-    public async Task<IEnumerable<DetailCoin>> GetDetailCoinsInfoAsync(string secondCurrency, int page = 1,
+    public async Task<IEnumerable<CoinInformation>> GetDetailCoinsInformationAsync(string secondCurrency, int page = 1,
         int perPage = 250, bool sparkline = true)
     {
         var strSparkline = sparkline ? "true" : "false";
@@ -28,7 +32,33 @@ public sealed class CoinGeckoClient : IRestDetailCoinClient
             .CreateRequest(Method.Get, CoinGeckoEndpoint.CoinMarkets, query)
             .Authenticate()
             .ExecuteAsync();
-        var result = response.FromJson<List<DetailCoin>>();
+        var result = response.FromJson<List<CoinInformation>>();
+
+        return result;
+    }
+
+    public async Task<CoinFullDataById> GetDetailCoinInformationById(string id)
+    {
+        var response = await _api
+            .CreateRequest(Method.Get, CoinGeckoEndpoint.CoinDataById(id), GetCoinDescriptionByIdQuery)
+            .Authenticate()
+            .ExecuteAsync();
+
+        var result = response.FromJson<CoinFullDataById>();
+
+        return result;
+    }
+
+    public async Task<MarketChart> GetMarketChartRangeByCoinId(string id, string vsCurrency, string from, string to)
+    {
+        var query = $"?vs_currency={vsCurrency}&from={from}&to={to}";
+
+        var response = await _api
+            .CreateRequest(Method.Get, CoinGeckoEndpoint.CoinHistoricalChartDataTimeRange(id), query)
+            .Authenticate()
+            .ExecuteAsync();
+
+        var result = response.FromJson<MarketChart>();
 
         return result;
     }

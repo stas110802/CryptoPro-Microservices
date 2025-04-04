@@ -1,7 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\projects\\CryptoPro\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1D5D248E-E112-49D2-AC2F-9E666A562028}|client\\desktop\\CryptoPro.WpfApp\\CryptoPro.WpfApp.csproj|d:\\projects\\cryptopro\\client\\desktop\\cryptopro.wpfapp\\mvvm\\views\\usercontrols\\maininformationuc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{1D5D248E-E112-49D2-AC2F-9E666A562028}|client\\desktop\\CryptoPro.WpfApp\\CryptoPro.WpfApp.csproj|solutionrelative:client\\desktop\\cryptopro.wpfapp\\mvvm\\views\\usercontrols\\maininformationuc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +14,23 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainInformationUC.xaml",
+              "DocumentMoniker": "D:\\projects\\CryptoPro\\client\\desktop\\CryptoPro.WpfApp\\MVVM\\Views\\UserControls\\MainInformationUC.xaml",
+              "RelativeDocumentMoniker": "client\\desktop\\CryptoPro.WpfApp\\MVVM\\Views\\UserControls\\MainInformationUC.xaml",
+              "ToolTip": "D:\\projects\\CryptoPro\\client\\desktop\\CryptoPro.WpfApp\\MVVM\\Views\\UserControls\\MainInformationUC.xaml*",
+              "RelativeToolTip": "client\\desktop\\CryptoPro.WpfApp\\MVVM\\Views\\UserControls\\MainInformationUC.xaml*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-01T14:38:39.111Z",
+              "EditorCaption": ""
             }
           ]
         }

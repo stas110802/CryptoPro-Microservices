@@ -6,9 +6,9 @@ namespace CryptoPro.WpfApp;
 
 public static class JsonExtensions
 {
-    public static ObservableCollection<Coin> FromJsonWithAutoIncrementId(this string json) 
+    public static ObservableCollection<Coin> FromJsonWithAutoIncrementId(this string json, int startIndex = 1) 
     {
-        var result = JsonConvert.DeserializeObject<ObservableCollection<Coin>>(json, new ItemConverter());
+        var result = JsonConvert.DeserializeObject<ObservableCollection<Coin>>(json, new ItemConverter(startIndex));
         if (result is null)
             throw new NullReferenceException("[ExchangeClients.JsonExtensions, method=FromJson] result is null");
 

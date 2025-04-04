@@ -2,9 +2,7 @@
 
 namespace CryptoPro.ExchangeClients.API.Controllers;
 
-[ApiController]
-[Route("[controller]")]
-public sealed class MarketController : Controller
+public sealed class MarketController 
 {
     public MarketController()
     {

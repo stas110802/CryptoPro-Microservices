@@ -25,17 +25,32 @@
     <ItemGroup>
       <Folder Include="MVVM\ViewModels\Windows\" />
       <Folder Include="MVVM\Views\Windows\" />
+      <Folder Include="ValueObjects\" />
     </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
       <PackageReference Include="FontAwesome5" Version="2.1.11" />
+      <PackageReference Include="Material.Icons.WPF" Version="2.3.1" />
       <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+      <PackageReference Include="ScottPlot.WPF" Version="5.0.55" />
     </ItemGroup>
 
     <ItemGroup>
       <Resource Include="Assets\83cacf4b2c14c3d885f1dd93518b5be0.jpg" />
       <Resource Include="Assets\logo.png" />
+      <None Remove="Fonts\UraBumBumSP.otf" />
+      <None Remove="Fonts\Inter.ttf" />
+      <Resource Include="Fonts\Inter.ttf" />
+      <None Remove="Fonts\Zector.ttf" />
+      <Resource Include="Fonts\Zector.ttf" />
+      <None Remove="Fonts\Comfortaa-VariableFont_wght.ttf" />
+      <Resource Include="Fonts\Comfortaa.ttf" />
+      <None Remove="Assets\bcoin.png" />
+      <Resource Include="Assets\bcoin.png" />
+      <None Remove="Fonts\FontAwesome.otf" />
+      <None Remove="Fonts\Font Awesome 6 Free-Regular-400.otf" />
+      <None Remove="Fonts\Font Awesome 6 Free-Solid-900.otf" />
     </ItemGroup>
 
 </Project>

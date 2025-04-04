@@ -2,5 +2,5 @@
 
 public class Sparkline
 {
-    public List<decimal> Prices { get; set; }
+    public List<double> Prices { get; set; }
 }

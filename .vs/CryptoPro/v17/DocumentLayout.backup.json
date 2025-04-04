@@ -3,20 +3,8 @@
   "WorkspaceRootPath": "D:\\projects\\CryptoPro\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1D5D248E-E112-49D2-AC2F-9E666A562028}|client\\desktop\\CryptoPro.WpfApp\\CryptoPro.WpfApp.csproj|d:\\projects\\cryptopro\\client\\desktop\\cryptopro.wpfapp\\mvvm\\viewmodels\\usercontrols\\maininformationviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1D5D248E-E112-49D2-AC2F-9E666A562028}|client\\desktop\\CryptoPro.WpfApp\\CryptoPro.WpfApp.csproj|solutionrelative:client\\desktop\\cryptopro.wpfapp\\mvvm\\viewmodels\\usercontrols\\maininformationviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1D5D248E-E112-49D2-AC2F-9E666A562028}|client\\desktop\\CryptoPro.WpfApp\\CryptoPro.WpfApp.csproj|d:\\projects\\cryptopro\\client\\desktop\\cryptopro.wpfapp\\mvvm\\views\\usercontrols\\maininformationuc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{1D5D248E-E112-49D2-AC2F-9E666A562028}|client\\desktop\\CryptoPro.WpfApp\\CryptoPro.WpfApp.csproj|solutionrelative:client\\desktop\\cryptopro.wpfapp\\mvvm\\views\\usercontrols\\maininformationuc.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1D5D248E-E112-49D2-AC2F-9E666A562028}|client\\desktop\\CryptoPro.WpfApp\\CryptoPro.WpfApp.csproj|d:\\projects\\cryptopro\\client\\desktop\\cryptopro.wpfapp\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{1D5D248E-E112-49D2-AC2F-9E666A562028}|client\\desktop\\CryptoPro.WpfApp\\CryptoPro.WpfApp.csproj|solutionrelative:client\\desktop\\cryptopro.wpfapp\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1D5D248E-E112-49D2-AC2F-9E666A562028}|client\\desktop\\CryptoPro.WpfApp\\CryptoPro.WpfApp.csproj|d:\\projects\\cryptopro\\client\\desktop\\cryptopro.wpfapp\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1D5D248E-E112-49D2-AC2F-9E666A562028}|client\\desktop\\CryptoPro.WpfApp\\CryptoPro.WpfApp.csproj|solutionrelative:client\\desktop\\cryptopro.wpfapp\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,60 +14,22 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MainInformationViewModel.cs",
-              "DocumentMoniker": "D:\\projects\\CryptoPro\\client\\desktop\\CryptoPro.WpfApp\\MVVM\\ViewModels\\UserControls\\MainInformationViewModel.cs",
-              "RelativeDocumentMoniker": "client\\desktop\\CryptoPro.WpfApp\\MVVM\\ViewModels\\UserControls\\MainInformationViewModel.cs",
-              "ToolTip": "D:\\projects\\CryptoPro\\client\\desktop\\CryptoPro.WpfApp\\MVVM\\ViewModels\\UserControls\\MainInformationViewModel.cs",
-              "RelativeToolTip": "client\\desktop\\CryptoPro.WpfApp\\MVVM\\ViewModels\\UserControls\\MainInformationViewModel.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAAwCsAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-26T14:03:51.247Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "MainInformationUC.xaml",
               "DocumentMoniker": "D:\\projects\\CryptoPro\\client\\desktop\\CryptoPro.WpfApp\\MVVM\\Views\\UserControls\\MainInformationUC.xaml",
               "RelativeDocumentMoniker": "client\\desktop\\CryptoPro.WpfApp\\MVVM\\Views\\UserControls\\MainInformationUC.xaml",
-              "ToolTip": "D:\\projects\\CryptoPro\\client\\desktop\\CryptoPro.WpfApp\\MVVM\\Views\\UserControls\\MainInformationUC.xaml",
-              "RelativeToolTip": "client\\desktop\\CryptoPro.WpfApp\\MVVM\\Views\\UserControls\\MainInformationUC.xaml",
+              "ToolTip": "D:\\projects\\CryptoPro\\client\\desktop\\CryptoPro.WpfApp\\MVVM\\Views\\UserControls\\MainInformationUC.xaml*",
+              "RelativeToolTip": "client\\desktop\\CryptoPro.WpfApp\\MVVM\\Views\\UserControls\\MainInformationUC.xaml*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-26T11:42:32.314Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "D:\\projects\\CryptoPro\\client\\desktop\\CryptoPro.WpfApp\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "client\\desktop\\CryptoPro.WpfApp\\MainWindow.xaml.cs",
-              "ToolTip": "D:\\projects\\CryptoPro\\client\\desktop\\CryptoPro.WpfApp\\MainWindow.xaml.cs",
-              "RelativeToolTip": "client\\desktop\\CryptoPro.WpfApp\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-26T11:38:59.083Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MainWindow.xaml",
-              "DocumentMoniker": "D:\\projects\\CryptoPro\\client\\desktop\\CryptoPro.WpfApp\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "client\\desktop\\CryptoPro.WpfApp\\MainWindow.xaml",
-              "ToolTip": "D:\\projects\\CryptoPro\\client\\desktop\\CryptoPro.WpfApp\\MainWindow.xaml",
-              "RelativeToolTip": "client\\desktop\\CryptoPro.WpfApp\\MainWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-26T11:22:23.934Z",
+              "WhenOpened": "2025-04-01T14:38:39.111Z",
               "EditorCaption": ""
             }
           ]

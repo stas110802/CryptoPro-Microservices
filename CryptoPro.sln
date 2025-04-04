@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{C2E50176-7406-484D-95BA-A3A7A138C958}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{CFF7AE4E-F515-4313-B0D6-E609EAEF3518}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{CFF7AE4E-F515-4313-B0D6-E609EAEF3518}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoPro.ExchangeClients.Application", "services\CryptoPro.ExchangeClients\Core\CryptoPro.ExchangeClients.Application\CryptoPro.ExchangeClients.Application.csproj", "{C74F35B9-81F9-40CE-9D3A-0582DA6F3453}"
 EndProject

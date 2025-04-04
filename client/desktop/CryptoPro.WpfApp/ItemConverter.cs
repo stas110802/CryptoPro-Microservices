@@ -7,6 +7,12 @@ namespace CryptoPro.WpfApp;
 
 public class ItemConverter : JsonConverter
 {
+    private int _id;
+    public ItemConverter(int id)
+    {
+        _id = id;
+    }
+    
     public override bool CanConvert(Type objectType)
     {
         return objectType == typeof(ObservableCollection<Coin>);
@@ -15,7 +21,6 @@ public class ItemConverter : JsonConverter
     public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
     {
         var items = new ObservableCollection<Coin>();
-        int id = 1;
 
         if (reader.TokenType == JsonToken.StartArray)
         {
@@ -26,8 +31,8 @@ public class ItemConverter : JsonConverter
                 var item = serializer.Deserialize<Coin>(reader);
                 if (item != null)
                 {
-                    item.Id = id;
-                    id++;
+                    item.Id = _id;
+                    _id++;
                     items.Add(item);
                 }
 
@@ -40,5 +45,6 @@ public class ItemConverter : JsonConverter
 
     public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
     {
+        throw new NotImplementedException();
     }
 }
