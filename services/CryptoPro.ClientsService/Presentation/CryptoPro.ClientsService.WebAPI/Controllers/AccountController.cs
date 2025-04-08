@@ -3,12 +3,14 @@ using CryptoPro.ClientsService.Application.Account.Queries.GetCurrencyAccountBal
 using CryptoPro.ClientsService.Domain.Clients.Models;
 using CryptoPro.ClientsService.Domain.Types;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CryptoPro.ClientsService.WebAPI.Controllers;
 
 [ApiController]
-[Route("[controller]/{exchange}/")]
+[Authorize]
+[Route("api/account/{exchange}/")]
 public sealed class AccountController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -18,7 +20,8 @@ public sealed class AccountController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpGet]
+    [HttpPost]
+    [Authorize]
     public async Task<ActionResult<IEnumerable<CurrencyBalance>>> GetAccountBalance(ExchangeType exchange)
     {
         var balances = await _mediator.Send(new GetAccountBalanceQuery(exchange));
@@ -26,7 +29,7 @@ public sealed class AccountController : ControllerBase
         return Ok(balances);
     }
 
-    [HttpGet("{currency}")]
+    [HttpPost("{currency}")]
     public async Task<ActionResult<CurrencyBalance>> GetCurrencyAccountBalance(ExchangeType exchange, string currency)
     {
         var balance = await _mediator.Send(new GetCurrencyAccountBalanceQuery(exchange, currency));

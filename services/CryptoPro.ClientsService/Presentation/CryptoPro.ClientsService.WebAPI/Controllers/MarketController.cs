@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CryptoPro.ClientsService.WebAPI.Controllers;
 
 [ApiController]
-[Route("[controller]/{exchange}/")]
+[Route("api/market/{exchange}/")]
 public sealed class MarketController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -23,7 +23,7 @@ public sealed class MarketController : ControllerBase
     {
         var price = await _mediator.Send(new GetCurrencyPriceQuery(exchange, currency));
 
-        return Ok(price);
+        return Ok(new { Price = price });
     }
     
     [HttpGet("getInfo/{currency}")]

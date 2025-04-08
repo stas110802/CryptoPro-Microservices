@@ -1,11 +1,9 @@
-﻿namespace CryptoPro.BotsService.Application.Services;
+﻿using CryptoPro.BotsService.Domain.Dtos;
+
+namespace CryptoPro.BotsService.Application.Services;
 
 public interface IBotService
 {
-    Guid RunSltpBot(string currencyPair,
-        decimal sellPrice,
-        decimal upperPrice,
-        decimal bottomPrice,
-        decimal amount);
+    Task<Guid> RunSltpBotAsync(SltpSettingsCreateDto settings);
     bool StopSltpBot(Guid botId);
 }

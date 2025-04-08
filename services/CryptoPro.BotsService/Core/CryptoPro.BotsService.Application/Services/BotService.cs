@@ -1,5 +1,6 @@
 ﻿using System.Collections.Concurrent;
 using CryptoPro.BotsService.Domain;
+using CryptoPro.BotsService.Domain.Dtos;
 using CryptoPro.BotsService.Domain.Entities;
 
 namespace CryptoPro.BotsService.Application.Services;
@@ -15,27 +16,23 @@ public sealed class BotService : IBotService
         _activeBots = new ConcurrentDictionary<Guid, BotWorker>();
     }
 
-    public Guid RunSltpBot(string currencyPair,
-        decimal sellPrice,
-        decimal upperPrice,
-        decimal bottomPrice,
-        decimal amount)
+    public async Task<Guid> RunSltpBotAsync(SltpSettingsCreateDto settings)
     {
         var botId = Guid.NewGuid();
         var bot = new BotWorker(
             _exchangeClient,
-            currencyPair,
-            sellPrice,
-            upperPrice,
-            bottomPrice,
-            amount);
+            settings.CurrencyPair,
+            settings.UpperPrice,
+            settings.BottomPrice,
+            settings.Amount);
 
         var isSuccessful = _activeBots.TryAdd(botId, bot);
-        if(isSuccessful is false)
+        if (isSuccessful is false)
             throw new Exception($"Failed to add bot {botId}");
         
-        bot.Start();
-        
+        await Task.Delay(1000);
+        //await bot.StartAsync();
+
         return botId;
     }
 
@@ -46,7 +43,7 @@ public sealed class BotService : IBotService
 
         bot.Stop();
         _activeBots.TryRemove(botId, out _);
-        
+
         return true;
     }
 }

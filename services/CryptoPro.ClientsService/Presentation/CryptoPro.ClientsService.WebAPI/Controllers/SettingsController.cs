@@ -1,12 +1,14 @@
 ﻿using CryptoPro.ClientsService.Application.Settings.Commands.CreateApiSettings;
 using CryptoPro.ClientsService.Domain.Dtos;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CryptoPro.ClientsService.WebAPI.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Authorize] 
+[Route("api/settings")]
 public sealed class SettingsController : ControllerBase
 {
     private readonly IMediator _mediator;

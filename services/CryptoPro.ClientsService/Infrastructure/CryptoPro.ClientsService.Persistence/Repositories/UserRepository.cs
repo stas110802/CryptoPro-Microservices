@@ -34,6 +34,19 @@ public sealed class UserRepository : IUserRepository
         return user;
     }
 
+    public async Task<UserEntity?> GetUserByLoginData(string login, string password)
+    {
+        var user = await _dbContext.Users
+            .FirstOrDefaultAsync(user => user.Login == login);
+        
+        if (user == null)
+            return null;
+
+        var isCorrectPassword = user.HashPassword ==
+                                HashCalculator.CalculateHmacSha256Hash(password, user.Login + user.Username);
+        return isCorrectPassword ? user : null;
+    }
+
     public async Task<bool> AddUserAsync(UserCreateDto user)
     {
         var userDb = new UserEntity

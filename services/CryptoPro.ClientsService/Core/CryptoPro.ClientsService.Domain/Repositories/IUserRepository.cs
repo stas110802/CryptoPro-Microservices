@@ -7,6 +7,7 @@ public interface IUserRepository
 {
     Task<IEnumerable<UserEntity>> GetAllUsersAsync();
     Task<UserEntity?> GetUserByIdAsync(int userId);
+    Task<UserEntity?> GetUserByLoginData(string login, string password);
     Task<bool> AddUserAsync(UserCreateDto user);
     Task<bool> UpdateUserAsync(UserUpdateDto user);
     Task<bool> DeleteUserAsync(int userId);

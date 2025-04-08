@@ -5,12 +5,14 @@ using CryptoPro.ClientsService.Application.Users.Queries.GetAllUsers;
 using CryptoPro.ClientsService.Application.Users.Queries.GetUserById;
 using CryptoPro.ClientsService.Domain.Dtos;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CryptoPro.ClientsService.WebAPI.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Authorize] 
+[Route("api/users")]
 public sealed class UsersController : ControllerBase
 {
     private readonly IMediator _mediator;
