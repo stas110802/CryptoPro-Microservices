@@ -10,9 +10,9 @@ namespace CryptoPro.BotsService.WebAPI.Controllers;
 public sealed class SltpBotController : ControllerBase
 {
     private readonly IMediator _mediator;
-    private readonly IBotManager _botService;
+    private readonly IBotService _botService;
 
-    public SltpBotController(IMediator mediator, IBotManager botService)
+    public SltpBotController(IMediator mediator, IBotService botService)
     {
         _mediator = mediator;
         _botService = botService;

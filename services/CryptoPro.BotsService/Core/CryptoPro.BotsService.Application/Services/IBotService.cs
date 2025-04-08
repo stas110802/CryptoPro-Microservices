@@ -4,6 +4,7 @@ namespace CryptoPro.BotsService.Application.Services;
 
 public interface IBotService
 {
-    Task<Guid> RunSltpBotAsync(SltpSettingsCreateDto settings);
-    bool StopSltpBot(Guid botId);
+    Task<Guid> StartBotAsync(SltpSettingsCreateDto settings);
+    Task<bool> StopBotAsync(Guid botId);
+    //Task CheckPricesAndExecuteTradesAsync(CancellationToken cancellationToken);
 }

@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using CryptoPro.BotsService.Application.Orders.Queries.GetUserSltpOrders;
+using CryptoPro.BotsService.Application.Repositories;
 using CryptoPro.BotsService.Application.Services;
 using CryptoPro.BotsService.Application.Services.Backgrounds;
 using CryptoPro.BotsService.Domain;
@@ -21,12 +22,13 @@ builder.Services.AddDbContext<BotsDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString(nameof(BotsDbContext)));
 });
 
+
 builder.Services.AddScoped<ISltpOrderRepository, SltpOrderRepository>();
 builder.Services.AddScoped<ICryptoProClientService, CryptoProClientService>();
 
-builder.Services.AddScoped<IBotManager, BotManager>();
+builder.Services.AddSingleton<IBotStateRepository, BotStateRepository>();
+builder.Services.AddScoped<IBotService, BotService>();
 builder.Services.AddHostedService<BotBackgroundService>();
-
 
 builder.Services.AddMediatR(config =>
     config.RegisterServicesFromAssembly(typeof(GetUserSltpOrdersQuery).Assembly));
