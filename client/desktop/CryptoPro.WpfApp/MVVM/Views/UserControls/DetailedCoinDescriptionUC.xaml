@@ -335,7 +335,7 @@
             <Border CornerRadius="5"
                     VerticalAlignment="Top"
                     BorderThickness="0.75"
-                    Margin="0 80 0 0"
+                    Margin="50 80 0 0"
                     Width="350"
                     BorderBrush="#00FFFFFF"
                     Background="#161616">
@@ -441,14 +441,14 @@
                                    Text="Market Rank"
                                    Foreground="Gray"
                                    FontWeight="Bold"
-                                   FontSize="14" />
+                                   FontSize="13" />
                         <TextBlock Grid.Column="1"
                                    Margin="0 0 25 0"
                                    HorizontalAlignment="Right"
                                    Text="{Binding CoinFullData.MarketCapRank, StringFormat='# {0}'}"
                                    Foreground="#ebe3d7"
                                    FontWeight="Bold"
-                                   FontSize="14" />
+                                   FontSize="13" />
                     </Grid>
                     <Border Height="0.5"
                             Margin="0 10 0 0 "
@@ -465,21 +465,21 @@
                                    Text="Last Price"
                                    Foreground="Gray"
                                    FontWeight="Bold"
-                                   FontSize="14" />
+                                   FontSize="13" />
                         <TextBlock Grid.Column="1"
                                    Margin="0 0 25 0"
                                    HorizontalAlignment="Right"
                                    Text="{Binding Coin.CurrentPrice, Converter={StaticResource DecimalToVariableCurrency}}"
                                    Foreground="#ebe3d7"
                                    FontWeight="Bold"
-                                   FontSize="14" />
+                                   FontSize="13" />
                     </Grid>
                     <Border Height="0.5"
                             Margin="0 10 0 0 "
                             Width="300"
                             Background="DarkGray" />
 
-                    <!-- All-Time Low -->
+                    <!-- High & Low -->
                     <Grid Margin="0 10 0 0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
@@ -547,6 +547,7 @@
                             Width="300"
                             Background="DarkGray" />
 
+                    <!-- Market Cap -->
                     <Grid Margin="0 10 0 0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
@@ -557,20 +558,21 @@
                                    Text="Market Cap"
                                    Foreground="Gray"
                                    FontWeight="Bold"
-                                   FontSize="14" />
+                                   FontSize="13" />
                         <TextBlock Grid.Column="1"
                                    Margin="0 0 25 0"
                                    HorizontalAlignment="Right"
                                    Text="{Binding Coin.MarketCap, Converter={StaticResource LongToZeroCurrency}}"
                                    Foreground="#ebe3d7"
                                    FontWeight="Bold"
-                                   FontSize="14" />
+                                   FontSize="13" />
                     </Grid>
                     <Border Height="0.5"
                             Margin="0 10 0 0 "
                             Width="300"
                             Background="DarkGray" />
-
+                    
+                    <!-- Total Volume -->
                     <Grid Margin="0 10 0 0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
@@ -581,14 +583,14 @@
                                    Text="Total Volume"
                                    Foreground="Gray"
                                    FontWeight="Bold"
-                                   FontSize="14" />
+                                   FontSize="13" />
                         <TextBlock Grid.Column="1"
                                    Margin="0 0 25 0"
                                    HorizontalAlignment="Right"
                                    Text="{Binding Coin.TotalVolume, Converter={StaticResource FloatToZeroCurrency}}"
                                    Foreground="#ebe3d7"
                                    FontWeight="Bold"
-                                   FontSize="14" />
+                                   FontSize="13" />
                     </Grid>
                     <Border Height="0.5"
                             Margin="0 10 0 0 "
@@ -605,7 +607,7 @@
                                    Text="Circulating Supply"
                                    Foreground="Gray"
                                    FontWeight="Bold"
-                                   FontSize="14" />
+                                   FontSize="13" />
                         <WrapPanel Grid.Column="1"
                                    HorizontalAlignment="Right"
                                    Margin="0 0 25 0">
@@ -613,13 +615,13 @@
                                        Text="{Binding Coin.CirculatingSupply, StringFormat=' {0:N0}'}"
                                        Foreground="#ebe3d7"
                                        FontWeight="Bold"
-                                       FontSize="14" />
+                                       FontSize="13" />
                             <TextBlock HorizontalAlignment="Right"
                                        Margin="2 0 0 0"
                                        Text="{Binding Coin.ShortName, Converter={StaticResource ToUpper}}"
                                        Foreground="#ebe3d7"
                                        FontWeight="Bold"
-                                       FontSize="14" />
+                                       FontSize="13" />
                         </WrapPanel>
                     </Grid>
                     <Border Height="0.5"
@@ -836,10 +838,6 @@
                                        FontSize="13" />
                         </WrapPanel>
                     </Grid>
-                    <Border Height="0.5"
-                            Margin="0 10 0 0 "
-                            Width="300"
-                            Background="DarkGray" />
                 </StackPanel>
             </Border>
         </Grid>
