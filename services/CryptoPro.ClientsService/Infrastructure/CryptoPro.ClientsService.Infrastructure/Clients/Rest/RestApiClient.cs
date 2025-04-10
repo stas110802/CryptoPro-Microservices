@@ -7,11 +7,11 @@ namespace CryptoPro.ClientsService.Infrastructure.Clients.Rest;
 public class RestApiClient<T>
     where T : BaseRequest, new()
 {
-    private readonly BinanceApiOptions _apiOptions;
+    private readonly BinanceApiOptions _binanceApiOptions;
 
-    public RestApiClient(BinanceApiOptions apiOptions)
+    public RestApiClient(BinanceApiOptions binanceApiOptions)
     {
-        _apiOptions = apiOptions;
+        _binanceApiOptions = binanceApiOptions;
     }
 
     public T CreateRequest(Method method, BaseType endpoint,
@@ -20,8 +20,8 @@ public class RestApiClient<T>
         var full = endpoint.Value + query;
         return new T
         {
-            ApiOptions = _apiOptions,
-            Client = new RestClient(_apiOptions.BaseUri),
+            ApiOptions = _binanceApiOptions,
+            Client = new RestClient(_binanceApiOptions.BaseUri),
             RequestOptions = RequestOptions.Create(method, endpoint, full, payload)
         };
     }

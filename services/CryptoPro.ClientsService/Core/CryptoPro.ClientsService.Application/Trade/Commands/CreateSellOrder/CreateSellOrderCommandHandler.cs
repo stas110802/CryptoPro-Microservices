@@ -1,28 +1,26 @@
-﻿using CryptoPro.ClientsService.Domain.Clients.Interfaces;
+﻿using CryptoPro.ClientsService.Application.Interfaces;
 using MediatR;
 
 namespace CryptoPro.ClientsService.Application.Trade.Commands.CreateSellOrder;
 
 public sealed class CreateSellOrderCommandHandler : IRequestHandler<CreateSellOrderCommand, bool>
 {
-    private readonly IEnumerable<IRestTradeClient> _clients;
+    private readonly IExchangeClientFactory _exchangeClientFactory;
 
-    public CreateSellOrderCommandHandler(IEnumerable<IRestTradeClient> clients)
+    public CreateSellOrderCommandHandler(IExchangeClientFactory exchangeClientFactory)
     {
-        _clients = clients;
+        _exchangeClientFactory = exchangeClientFactory;
     }
 
     public async Task<bool> Handle(CreateSellOrderCommand request, CancellationToken cancellationToken)
     {
-        var selectedClient = _clients
-            .Single(c
-                => c.GetExchangeType() == request.Exchange);
+        var client = await _exchangeClientFactory.CreateRestTradeClientAsync(request.Exchange, request.UserId);
         
         if (request.Price == 0)
         {
-            return await selectedClient.CreateSellOrderAsync(request.Currency, request.Amount);
+            return await client.CreateSellOrderAsync(request.Currency, request.Amount);
         }
         
-        return await selectedClient.CreateSellOrderAsync(request.Currency, request.Amount, request.Price);
+        return await client.CreateSellOrderAsync(request.Currency, request.Amount, request.Price);
     }
 }

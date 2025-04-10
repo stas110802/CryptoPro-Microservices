@@ -23,7 +23,7 @@ public sealed class AuthorizeController : ControllerBase
     }
     
     [HttpPost("login")]
-    public async Task<ActionResult> Login([FromBody] GetUserByLoginDataQuery request)
+    public async Task<ActionResult> Login([FromQuery] GetUserByLoginDataQuery request)
     {
         var user = await _mediator.Send(new GetUserByLoginDataQuery(request.Login, request.Password));
 

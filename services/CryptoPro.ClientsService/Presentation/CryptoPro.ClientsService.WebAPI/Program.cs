@@ -1,13 +1,11 @@
 using System.Diagnostics;
-using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using CryptoPro.ClientsService.Application.Interfaces;
 using CryptoPro.ClientsService.Application.Profilies;
 using CryptoPro.ClientsService.Application.Users.Queries.GetAllUsers;
-using CryptoPro.ClientsService.Domain.Clients.Interfaces;
 using CryptoPro.ClientsService.Domain.Repositories;
-using CryptoPro.ClientsService.Infrastructure.Clients.Rest.Binance;
-using CryptoPro.ClientsService.Infrastructure.Options;
+using CryptoPro.ClientsService.Infrastructure.Factories;
 using CryptoPro.ClientsService.Persistence.Data;
 using CryptoPro.ClientsService.Persistence.Repositories;
 using CryptoPro.ClientsService.WebAPI.Data;
@@ -43,16 +41,10 @@ builder.Services.AddDbContext<ClientsDbContext>(options =>
 builder.Services.AddScoped<IApiSettingsRepository, ApiSettingsRepository>();
 builder.Services.AddScoped<IExchangeRepository, ExchangeRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
-
-builder.Services.Configure<BinanceApiOptions>(options =>
-{
-    options.BaseUri = "https://testnet.binance.vision";
-    options.PublicKey = builder.Configuration["PublicKeys:BinanceTestNet"] ?? string.Empty;
-    options.SecretKey = builder.Configuration["SecretKeys:BinanceTestNet"] ?? string.Empty;
-});
-builder.Services.AddScoped<IRestMarketClient, BinanceRestClient>();
-builder.Services.AddScoped<IRestAccountClient, BinanceRestClient>();
-builder.Services.AddScoped<IRestTradeClient, BinanceRestClient>();
+builder.Services.AddScoped<IExchangeClientFactory, ExchangeClientFactory>();
+// builder.Services.AddScoped<IRestMarketClient, BinanceRestClient>();
+// builder.Services.AddScoped<IRestAccountClient, BinanceRestClient>();
+// builder.Services.AddScoped<IRestTradeClient, BinanceRestClient>();
 
 // JWT
 builder.Services

@@ -38,12 +38,6 @@ builder.Services.AddDbContext<BotsDbContext>(options =>
 
 // Redis
 var redisConnection = builder.Configuration.GetConnectionString("Redis");
-
-// builder.Services.AddStackExchangeRedisCache(opt =>
-// {
-//     opt.Configuration = "redis.default.svc.cluster.local:6379,abortConnect=false";
-// });
-
 builder.Services.AddSingleton<IConnectionMultiplexer>(sp => 
     ConnectionMultiplexer.Connect(redisConnection));
 builder.Services.AddScoped<IRedisService, RedisCacheService>();

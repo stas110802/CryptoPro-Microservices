@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CryptoPro.ClientsService.WebAPI.Controllers;
 
 [ApiController]
-[Route("api/exchanges/")]
+[Route("api/exchanges/{exchange}/")]
 public sealed class ExchangeController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -16,10 +16,10 @@ public sealed class ExchangeController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpGet("getIdByName/{name}")]
-    public async Task<ActionResult> GetExchangeIdByName(ExchangeType name)
+    [HttpGet("getId")]
+    public async Task<ActionResult> GetExchangeIdByName(ExchangeType exchange)
     {
-        var id = await _mediator.Send(new GetExchangeIdByNameQuery(name));
+        var id = await _mediator.Send(new GetExchangeIdByNameQuery(exchange));
 
         return Ok(new { Id = id });
     }

@@ -1,24 +1,21 @@
-﻿using CryptoPro.ClientsService.Domain.Clients.Interfaces;
+﻿using CryptoPro.ClientsService.Application.Interfaces;
 using MediatR;
 
 namespace CryptoPro.ClientsService.Application.Market.Queries.GetCurrencyPrice;
 
 public sealed class GetCurrencyPriceQueryHandler : IRequestHandler<GetCurrencyPriceQuery, decimal>
 {
-    private readonly IEnumerable<IRestMarketClient> _clients;
+    private readonly IExchangeClientFactory _exchangeClientFactory;
 
-    public GetCurrencyPriceQueryHandler(IEnumerable<IRestMarketClient> clients)
+    public GetCurrencyPriceQueryHandler(IExchangeClientFactory exchangeClientFactory)
     {
-        _clients = clients;
+        _exchangeClientFactory = exchangeClientFactory;
     }
 
     public async Task<decimal> Handle(GetCurrencyPriceQuery request, CancellationToken cancellationToken)
     {
-        var selectedClient = _clients
-            .Single(c
-                => c.GetExchangeType() == request.Exchange);
-
-        var price = await selectedClient.GetCurrencyPriceAsync(request.Currency);
+        var client = await _exchangeClientFactory.CreateMarketClientAsync(request.Exchange, request.UserId);
+        var price = await client.GetCurrencyPriceAsync(request.Currency);
 
         return price;
     }

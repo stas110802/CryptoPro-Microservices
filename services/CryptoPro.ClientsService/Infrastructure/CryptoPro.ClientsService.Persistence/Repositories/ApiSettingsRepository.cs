@@ -1,6 +1,7 @@
 ﻿using CryptoPro.ClientsService.Domain.Dtos;
 using CryptoPro.ClientsService.Domain.Entities;
 using CryptoPro.ClientsService.Domain.Repositories;
+using CryptoPro.ClientsService.Domain.Types;
 using CryptoPro.ClientsService.Persistence.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,33 +26,32 @@ public sealed class ApiSettingsRepository : IApiSettingsRepository
             .ToListAsync();
     }
 
-    public async Task<ApiSettingsEntity> GetApiSettingsByIdAsync(int id)
+    public async Task<ApiSettingsEntity?> GetApiSettingsByIdAsync(int id)
     {
         var apiSettings = await _dbContext
             .ApiSettings
             .FindAsync(id);
-        if (apiSettings == null)
-        {
-            throw new KeyNotFoundException("Api-Settings does not exist");
-        }
 
         return apiSettings;
     }
 
-    public async Task<bool> AddApiSettingsAsync(ApiSettingsCreateDto settings)
+    public async Task<ApiSettingsEntity?> GetApiSettingsByUserIdAsync(ExchangeType type, int userId)
     {
-        var settingsEntity = new ApiSettingsEntity
-        {
-            PublicKey = settings.PublicKey,
-            SecretKey = settings.SecretKey,
-            SpecificSettings = settings.SpecificSettings,
-            ExchangeId = settings.ExchangeId,
-            UserId = settings.UserId
-        };
-        
+        return await _dbContext
+            .ApiSettings
+            .AsNoTracking()
+            .Include(s => s.Exchange)
+            .FirstOrDefaultAsync(s 
+                => s.UserId == userId && 
+                   s.Exchange != null && 
+                   s.Exchange.Type == type);
+    }
+
+    public async Task<bool> AddApiSettingsAsync(ApiSettingsEntity settings)
+    {
         await _dbContext
             .ApiSettings
-            .AddAsync(settingsEntity);
+            .AddAsync(settings);
 
         return await _dbContext
             .SaveChangesAsync() > 0;

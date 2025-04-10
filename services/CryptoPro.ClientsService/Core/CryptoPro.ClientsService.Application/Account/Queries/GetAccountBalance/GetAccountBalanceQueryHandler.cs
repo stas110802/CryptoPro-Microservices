@@ -1,25 +1,25 @@
-﻿using CryptoPro.ClientsService.Domain.Clients.Interfaces;
+﻿using CryptoPro.ClientsService.Application.Interfaces;
 using CryptoPro.ClientsService.Domain.Clients.Models;
+using CryptoPro.ClientsService.Domain.Repositories;
 using MediatR;
 
 namespace CryptoPro.ClientsService.Application.Account.Queries.GetAccountBalance;
 
-public sealed class GetAccountBalanceQueryHandler: IRequestHandler<GetAccountBalanceQuery, IEnumerable<CurrencyBalance>>
+public sealed class
+    GetAccountBalanceQueryHandler : IRequestHandler<GetAccountBalanceQuery, IEnumerable<CurrencyBalance>>
 {
-    private readonly IEnumerable<IRestAccountClient> _clients;
+    private readonly IExchangeClientFactory _exchangeClientFactory;
 
-    public GetAccountBalanceQueryHandler(IEnumerable<IRestAccountClient> clients)
+    public GetAccountBalanceQueryHandler(IExchangeClientFactory exchangeClientFactory)
     {
-        _clients = clients;
+        _exchangeClientFactory = exchangeClientFactory;
     }
 
-    public async Task<IEnumerable<CurrencyBalance>> Handle(GetAccountBalanceQuery request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<CurrencyBalance>> Handle(GetAccountBalanceQuery request,
+        CancellationToken cancellationToken)
     {
-        var selectedClient = _clients
-            .Single(c
-                => c.GetExchangeType() == request.Exchange);
-
-        var currencyBalances = await selectedClient.GetAccountBalanceAsync();
+        var client = await _exchangeClientFactory.CreateRestAccountClientAsync(request.Exchange, request.UserId);
+        var currencyBalances = await client.GetAccountBalanceAsync();
 
         return currencyBalances;
     }

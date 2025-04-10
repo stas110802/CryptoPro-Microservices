@@ -17,10 +17,11 @@ public sealed class SltpBotController : ControllerBase
     private readonly IRedisService _cache;
     private readonly IConfiguration _config;
     private readonly IJwtParser _jwtParser;
+
     public SltpBotController(
         IBotService botService,
         IRedisService cache,
-        IConfiguration config, 
+        IConfiguration config,
         IJwtParser jwtParser)
     {
         _botService = botService;
@@ -30,7 +31,7 @@ public sealed class SltpBotController : ControllerBase
     }
 
     [HttpPost("run")]
-    public async Task<ActionResult> RunBot([FromBody] SltpSettingsCreateDto settings)
+    public async Task<ActionResult> RunBot([FromQuery] SltpSettingsCreateDto settings)
     {
         var userId = GetUserId();
         if (userId == null)
@@ -40,9 +41,8 @@ public sealed class SltpBotController : ControllerBase
 
         var token = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
         var expiry = _jwtParser.GetRemainingLifetime(token) ?? TimeSpan.FromMinutes(5);
-        
+
         await _cache.SetAsync($"jwt:{userId}", token, expiry);
-        
         settings.UserId = userId.Value;
         var id = await _botService.StartBotAsync(settings);
 
@@ -50,7 +50,7 @@ public sealed class SltpBotController : ControllerBase
     }
 
     [HttpPost("stop")]
-    public async Task<ActionResult> StopBot(Guid botId)
+    public async Task<ActionResult> StopBot([FromQuery] Guid botId)
     {
         var isStop = await _botService.StopBotAsync(botId);
 

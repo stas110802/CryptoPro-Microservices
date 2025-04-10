@@ -1,8 +1,8 @@
 ﻿using CryptoPro.ClientsService.Domain.Clients.Models;
 
-namespace CryptoPro.ClientsService.Domain.Clients.Interfaces;
+namespace CryptoPro.ClientsService.Application.Interfaces;
 
-public interface IRestTradeClient : IRestExchangeClient
+public interface IRestTradeClient 
 {
     /// <summary>
     /// Creates an order to sell a currency pair

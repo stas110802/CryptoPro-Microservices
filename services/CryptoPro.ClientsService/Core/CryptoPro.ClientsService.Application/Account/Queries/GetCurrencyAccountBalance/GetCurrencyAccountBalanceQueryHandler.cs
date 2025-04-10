@@ -1,27 +1,31 @@
 ﻿using CryptoPro.ClientsService.Application.Account.Queries.GetAccountBalance;
-using CryptoPro.ClientsService.Domain.Clients.Interfaces;
+using CryptoPro.ClientsService.Application.Interfaces;
 using CryptoPro.ClientsService.Domain.Clients.Models;
+using CryptoPro.ClientsService.Domain.Repositories;
 using MediatR;
 
 namespace CryptoPro.ClientsService.Application.Account.Queries.GetCurrencyAccountBalance;
 
-public sealed class GetCurrencyAccountBalanceQueryHandler: IRequestHandler<GetCurrencyAccountBalanceQuery, CurrencyBalance>
+public sealed class
+    GetCurrencyAccountBalanceQueryHandler : IRequestHandler<GetCurrencyAccountBalanceQuery, CurrencyBalance>
 {
-    private readonly IEnumerable<IRestAccountClient> _clients;
+    private readonly IExchangeClientFactory _exchangeClientFactory;
+    private readonly IApiSettingsRepository _apiSettingsRepository;
 
-    public GetCurrencyAccountBalanceQueryHandler(IEnumerable<IRestAccountClient> clients)
+    public GetCurrencyAccountBalanceQueryHandler(
+        IExchangeClientFactory exchangeClientFactory,
+        IApiSettingsRepository apiSettingsRepository)
     {
-        _clients = clients;
+        _exchangeClientFactory = exchangeClientFactory;
+        _apiSettingsRepository = apiSettingsRepository;
     }
 
-    public async Task<CurrencyBalance> Handle(GetCurrencyAccountBalanceQuery request, CancellationToken cancellationToken)
+    public async Task<CurrencyBalance> Handle(GetCurrencyAccountBalanceQuery request,
+        CancellationToken cancellationToken)
     {
-        var selectedClient = _clients
-            .Single(c
-                => c.GetExchangeType() == request.Exchange);
+        var client = await _exchangeClientFactory.CreateRestAccountClientAsync(request.Exchange, request.UserId);
+        var balance = await client.GetCurrencyAccountBalanceAsync(request.Currency);
 
-        var currencyBalance = await selectedClient.GetCurrencyAccountBalanceAsync(request.Currency);
-
-        return currencyBalance;
+        return balance;
     }
 }

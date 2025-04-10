@@ -1,8 +1,8 @@
 ﻿using CryptoPro.ClientsService.Domain.Clients.Models;
 
-namespace CryptoPro.ClientsService.Domain.Clients.Interfaces;
+namespace CryptoPro.ClientsService.Application.Interfaces;
 
-public interface IRestMarketClient : IRestExchangeClient
+public interface IRestMarketClient 
 {
     /// <summary>
     /// Returns information about a currency pair

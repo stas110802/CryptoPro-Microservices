@@ -34,8 +34,16 @@ public sealed class CryptoProClientService : ICryptoProClientService
 
     public async Task<decimal> GetCurrencyPriceAsync(string currency, CancellationToken cancellationToken)
     {
+        var queryParams = new Dictionary<string, string>
+        {
+            { "currency", currency }
+        };
+        var queryString = string.Join("&", queryParams.Select(x => $"{x.Key}={x.Value}"));
+
+        await SetJwtTokenInHeader();
+
         var response =
-            await _httpClient.GetAsync($"{BaseUrl}api/market/{GetExchangeName()}/getPrice/{currency}",
+            await _httpClient.GetAsync($"{BaseUrl}api/market/{GetExchangeName()}/getPrice?{queryString}",
                 cancellationToken);
         var result = (await response.Content.ReadFromJsonAsync<PriceRequest>(cancellationToken: cancellationToken))
             ?.Price ?? 0;
@@ -49,9 +57,10 @@ public sealed class CryptoProClientService : ICryptoProClientService
         {
             { "currency", currency }
         };
+        var queryString = string.Join("&", queryParams.Select(x => $"{x.Key}={x.Value}"));
+
         await SetJwtTokenInHeader();
 
-        var queryString = string.Join("&", queryParams.Select(x => $"{x.Key}={x.Value}"));
         var requestUri = $"{BaseUrl}api/account/{GetExchangeName()}/currencyBalance?{queryString}";
         var response = await _httpClient.PostAsync(requestUri, null, cancellationToken);
         var result = (await response.Content.ReadFromJsonAsync<BalanceRequest>(cancellationToken: cancellationToken))
@@ -62,7 +71,7 @@ public sealed class CryptoProClientService : ICryptoProClientService
 
     public async Task<int> GetExchangeIdByType(ExchangeType exchangeType, CancellationToken cancellationToken)
     {
-        var requestUri = $"{BaseUrl}api/exchanges/getIdByName/{GetExchangeName()}";
+        var requestUri = $"{BaseUrl}api/exchanges/{GetExchangeName()}/getId";
         var response = await _httpClient.PostAsync(requestUri, null, cancellationToken);
         var result = (await response.Content.ReadFromJsonAsync<ExchangeRequest>(cancellationToken: cancellationToken))
             ?.Id ?? 0;

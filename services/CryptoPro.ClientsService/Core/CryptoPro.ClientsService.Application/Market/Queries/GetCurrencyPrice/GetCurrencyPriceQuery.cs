@@ -3,4 +3,4 @@ using MediatR;
 
 namespace CryptoPro.ClientsService.Application.Market.Queries.GetCurrencyPrice;
 
-public sealed record GetCurrencyPriceQuery(ExchangeType Exchange, string Currency) : IRequest<decimal>;
+public sealed record GetCurrencyPriceQuery(ExchangeType Exchange, string Currency, int UserId) : IRequest<decimal>;

@@ -2,6 +2,8 @@
 using CryptoPro.ClientsService.Application.Account.Queries.GetCurrencyAccountBalance;
 using CryptoPro.ClientsService.Domain.Clients.Models;
 using CryptoPro.ClientsService.Domain.Types;
+using CryptoPro.ClientsService.Infrastructure.Extensions;
+using CryptoPro.Common.Utilities.Helpers;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -23,7 +25,8 @@ public sealed class AccountController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<IEnumerable<CurrencyBalance>>> GetAccountBalance(ExchangeType exchange)
     {
-        var balances = await _mediator.Send(new GetAccountBalanceQuery(exchange));
+        var userId = JwtHelper.GetUserId(User) ?? throw new UnauthorizedAccessException();
+        var balances = await _mediator.Send(new GetAccountBalanceQuery(exchange, userId));
 
         return Ok(balances);
     }
@@ -32,7 +35,8 @@ public sealed class AccountController : ControllerBase
     public async Task<ActionResult<CurrencyBalance>> GetCurrencyAccountBalance(ExchangeType exchange,
         [FromQuery] string currency)
     {
-        var balance = await _mediator.Send(new GetCurrencyAccountBalanceQuery(exchange, currency));
+        var userId = JwtHelper.GetUserId(User) ?? throw new UnauthorizedAccessException();
+        var balance = await _mediator.Send(new GetCurrencyAccountBalanceQuery(exchange, currency, userId));
 
         return Ok(balance);
     }

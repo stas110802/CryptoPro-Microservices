@@ -17,6 +17,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\Core\CryptoPro.ClientsService.Application\CryptoPro.ClientsService.Application.csproj" />
       <ProjectReference Include="..\..\Core\CryptoPro.ClientsService.Domain\CryptoPro.ClientsService.Domain.csproj" />
     </ItemGroup>
 

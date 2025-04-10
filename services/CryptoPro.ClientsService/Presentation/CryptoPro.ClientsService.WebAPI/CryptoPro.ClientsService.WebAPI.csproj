@@ -33,6 +33,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\..\..\shared-libraries\CryptoPro.Common.Utilities\CryptoPro.Common.Utilities.csproj" />
       <ProjectReference Include="..\..\Core\CryptoPro.ClientsService.Application\CryptoPro.ClientsService.Application.csproj" />
       <ProjectReference Include="..\..\Core\CryptoPro.ClientsService.Domain\CryptoPro.ClientsService.Domain.csproj" />
       <ProjectReference Include="..\..\Infrastructure\CryptoPro.ClientsService.Infrastructure\CryptoPro.ClientsService.Infrastructure.csproj" />

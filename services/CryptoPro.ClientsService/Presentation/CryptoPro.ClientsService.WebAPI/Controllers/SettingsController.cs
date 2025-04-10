@@ -1,5 +1,7 @@
 ﻿using CryptoPro.ClientsService.Application.Settings.Commands.CreateApiSettings;
 using CryptoPro.ClientsService.Domain.Dtos;
+using CryptoPro.ClientsService.Domain.Types;
+using CryptoPro.Common.Utilities.Helpers;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -7,8 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace CryptoPro.ClientsService.WebAPI.Controllers;
 
 [ApiController]
-[Authorize] 
-[Route("api/settings")]
+[Authorize]
+[Route("api/settings/{exchange}/")]
 public sealed class SettingsController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -17,12 +19,14 @@ public sealed class SettingsController : ControllerBase
     {
         _mediator = mediator;
     }
-    
-    [HttpPost]
-    public async Task<ActionResult<bool>> CreateApiSettings(ApiSettingsCreateDto settingsCreateDto)
+
+    [HttpPost("create")]
+    public async Task<ActionResult<bool>> CreateApiSettings(ExchangeType exchange,
+        [FromBody] ApiSettingsCreateDto settingsCreateDto)
     {
-        var isSuccessful = await _mediator.Send(new CreateApiSettingsCommand(settingsCreateDto));
-        
-        return Ok(isSuccessful);
+        var userId = JwtHelper.GetUserId(User) ?? throw new UnauthorizedAccessException();
+        var isSuccessful = await _mediator.Send(new CreateApiSettingsCommand(exchange, settingsCreateDto, userId));
+
+        return Ok(new { Status = isSuccessful });
     }
 }

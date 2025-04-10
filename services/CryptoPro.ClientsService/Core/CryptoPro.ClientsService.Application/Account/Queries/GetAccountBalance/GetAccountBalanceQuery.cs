@@ -4,4 +4,5 @@ using MediatR;
 
 namespace CryptoPro.ClientsService.Application.Account.Queries.GetAccountBalance;
 
-public sealed record GetAccountBalanceQuery(ExchangeType Exchange) : IRequest<IEnumerable<CurrencyBalance>>;
+public sealed record GetAccountBalanceQuery(ExchangeType Exchange, int UserId) 
+    : IRequest<IEnumerable<CurrencyBalance>>;

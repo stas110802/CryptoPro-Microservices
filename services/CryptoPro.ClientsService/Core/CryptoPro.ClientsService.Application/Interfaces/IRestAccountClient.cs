@@ -1,8 +1,8 @@
 ﻿using CryptoPro.ClientsService.Domain.Clients.Models;
 
-namespace CryptoPro.ClientsService.Domain.Clients.Interfaces;
+namespace CryptoPro.ClientsService.Application.Interfaces;
 
-public interface IRestAccountClient : IRestExchangeClient
+public interface IRestAccountClient 
 {
     /// <summary>
     /// Returns a list of coins and their amount on the account

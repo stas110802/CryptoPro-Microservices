@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{A9E5A2F0-019D-4B0B-B098-731A8E370FD8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "K8S", "K8S", "{DBA967BC-F30C-4457-9528-3BD27692744C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "kubernetes", "kubernetes", "{DBA967BC-F30C-4457-9528-3BD27692744C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "client", "client", "{55973DA7-A6BF-422C-8A44-8B8820E91722}"
 EndProject
@@ -75,14 +75,33 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "coins-service", "coins-service", "{F5ADFADE-9AC1-42C2-9D7D-48FE3BE1DC68}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "bots-service", "bots-service", "{B1E2F1CC-680F-4914-9670-A955758C5F04}"
-	ProjectSection(SolutionItems) = preProject
-		K8S\bots-service\redis-namespace.yaml = K8S\bots-service\redis-namespace.yaml
-		K8S\bots-service\redis-configmap.yaml = K8S\bots-service\redis-configmap.yaml
-		K8S\bots-service\redis-secret.yaml = K8S\bots-service\redis-secret.yaml
-		K8S\bots-service\redis-deployment.yaml = K8S\bots-service\redis-deployment.yaml
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "notify-service", "notify-service", "{EE9BB705-F939-49D4-8225-20A8AD236105}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "redis", "redis", "{A2D5113A-BC5D-441C-B2FE-9A47C357F441}"
+	ProjectSection(SolutionItems) = preProject
+		K8S\bots-service\redis-secret.yaml = K8S\bots-service\redis-secret.yaml
+		K8S\bots-service\redis-namespace.yaml = K8S\bots-service\redis-namespace.yaml
+		K8S\bots-service\redis-configmap.yaml = K8S\bots-service\redis-configmap.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "rabbitmq", "rabbitmq", "{8ECEE92E-4159-44C7-9B74-C2D177C80947}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "service", "service", "{1DEDA245-BC79-43C3-A293-6F12B7D91970}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "postgresql", "postgresql", "{8DBC0B30-BA12-4272-B54A-F68FBCE09E5C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "redis", "redis", "{E97865D9-3A56-4915-82CF-55CA0F6000D5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "redis", "redis", "{A91ED57E-823B-4C4A-B0F1-FEA3563B63C3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared-libraries", "shared-libraries", "{84BDF361-9A10-4DF3-9E0E-04FCD832D0AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoPro.Common.Utilities", "shared-libraries\CryptoPro.Common.Utilities\CryptoPro.Common.Utilities.csproj", "{577C906C-7071-4001-94BC-7BE7E905BB65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoPro.Common.Contracts", "shared-libraries\CryptoPro.Common.Contracts\CryptoPro.Common.Contracts.csproj", "{66F14C21-C9ED-4E62-9DD1-E47345F87750}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoPro.Common.Infrastructure", "shared-libraries\CryptoPro.Common.Infrastructure\CryptoPro.Common.Infrastructure.csproj", "{6B3C8FDB-532B-44EB-B9D3-6B682795A9BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -126,6 +145,15 @@ Global
 		{F5ADFADE-9AC1-42C2-9D7D-48FE3BE1DC68} = {DBA967BC-F30C-4457-9528-3BD27692744C}
 		{B1E2F1CC-680F-4914-9670-A955758C5F04} = {DBA967BC-F30C-4457-9528-3BD27692744C}
 		{EE9BB705-F939-49D4-8225-20A8AD236105} = {DBA967BC-F30C-4457-9528-3BD27692744C}
+		{A2D5113A-BC5D-441C-B2FE-9A47C357F441} = {B1E2F1CC-680F-4914-9670-A955758C5F04}
+		{8ECEE92E-4159-44C7-9B74-C2D177C80947} = {B1E2F1CC-680F-4914-9670-A955758C5F04}
+		{1DEDA245-BC79-43C3-A293-6F12B7D91970} = {B1E2F1CC-680F-4914-9670-A955758C5F04}
+		{8DBC0B30-BA12-4272-B54A-F68FBCE09E5C} = {B1E2F1CC-680F-4914-9670-A955758C5F04}
+		{E97865D9-3A56-4915-82CF-55CA0F6000D5} = {F5ADFADE-9AC1-42C2-9D7D-48FE3BE1DC68}
+		{A91ED57E-823B-4C4A-B0F1-FEA3563B63C3} = {9511D5C2-7A97-4D1A-B785-D62F144CD53C}
+		{577C906C-7071-4001-94BC-7BE7E905BB65} = {84BDF361-9A10-4DF3-9E0E-04FCD832D0AF}
+		{66F14C21-C9ED-4E62-9DD1-E47345F87750} = {84BDF361-9A10-4DF3-9E0E-04FCD832D0AF}
+		{6B3C8FDB-532B-44EB-B9D3-6B682795A9BC} = {84BDF361-9A10-4DF3-9E0E-04FCD832D0AF}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{1D5D248E-E112-49D2-AC2F-9E666A562028}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -192,5 +220,17 @@ Global
 		{B0EC5026-CACF-471D-8630-581C8315510A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0EC5026-CACF-471D-8630-581C8315510A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0EC5026-CACF-471D-8630-581C8315510A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{577C906C-7071-4001-94BC-7BE7E905BB65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{577C906C-7071-4001-94BC-7BE7E905BB65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{577C906C-7071-4001-94BC-7BE7E905BB65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{577C906C-7071-4001-94BC-7BE7E905BB65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66F14C21-C9ED-4E62-9DD1-E47345F87750}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66F14C21-C9ED-4E62-9DD1-E47345F87750}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66F14C21-C9ED-4E62-9DD1-E47345F87750}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66F14C21-C9ED-4E62-9DD1-E47345F87750}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B3C8FDB-532B-44EB-B9D3-6B682795A9BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B3C8FDB-532B-44EB-B9D3-6B682795A9BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B3C8FDB-532B-44EB-B9D3-6B682795A9BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B3C8FDB-532B-44EB-B9D3-6B682795A9BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

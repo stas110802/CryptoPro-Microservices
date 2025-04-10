@@ -1,5 +1,5 @@
 ﻿using System.Globalization;
-using CryptoPro.ClientsService.Domain.Clients.Interfaces;
+using CryptoPro.ClientsService.Application.Interfaces;
 using CryptoPro.ClientsService.Domain.Clients.Models;
 using CryptoPro.ClientsService.Domain.Types;
 using CryptoPro.ClientsService.Infrastructure.Extensions;
@@ -12,13 +12,13 @@ using static System.Decimal;
 
 namespace CryptoPro.ClientsService.Infrastructure.Clients.Rest.Binance;
 
-public sealed class BinanceRestClient : IRestMarketClient, IRestTradeClient, IRestAccountClient
+public sealed class BinanceRestClient : IRestExchangeClient
 {
     private readonly RestApiClient<BinanceRequest> _api;
 
-    public BinanceRestClient(IOptions<BinanceApiOptions> options)
+    public BinanceRestClient(BinanceApiOptions options)
     {
-        _api = new RestApiClient<BinanceRequest>(options.Value);
+        _api = new RestApiClient<BinanceRequest>(options);
     }
 
     public async Task<CurrencyPair> GetCurrencyInformationAsync(string currency)
