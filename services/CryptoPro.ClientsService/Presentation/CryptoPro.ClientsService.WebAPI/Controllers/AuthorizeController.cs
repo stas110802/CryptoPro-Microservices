@@ -4,7 +4,6 @@ using System.Text;
 using CryptoPro.ClientsService.Application.Users.Queries.GetUserByLoginData;
 using CryptoPro.ClientsService.Domain.Entities;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 
@@ -44,8 +43,7 @@ public sealed class AuthorizeController : ControllerBase
 
         var claims = new[]
         {
-            new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),  
-            new Claim(JwtRegisteredClaimNames.Name, user.Login),
+            new Claim(JwtRegisteredClaimNames.Name, user.Id.ToString()),  
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
         };
 
@@ -53,7 +51,7 @@ public sealed class AuthorizeController : ControllerBase
             issuer: _config["Jwt:Issuer"],
             audience: _config["Jwt:Audience"],
             claims: claims,
-            expires: DateTime.UtcNow.AddHours(1), 
+            expires: DateTime.UtcNow.AddMinutes(_config.GetValue<int>("Jwt:ExpiresInMinutes")),
             signingCredentials: credentials
         );
 

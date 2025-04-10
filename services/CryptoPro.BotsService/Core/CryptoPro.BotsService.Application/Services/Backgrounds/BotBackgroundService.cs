@@ -1,5 +1,7 @@
 ﻿using CryptoPro.BotsService.Application.Repositories;
 using CryptoPro.BotsService.Domain;
+using CryptoPro.BotsService.Domain.Entities;
+using CryptoPro.BotsService.Domain.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -26,19 +28,40 @@ public class BotBackgroundService : BackgroundService
             {
                 using var scope = _scopeFactory.CreateScope();
                 var exchangeClient = scope.ServiceProvider.GetRequiredService<ICryptoProClientService>();
+                
+                var orderRepository = scope.ServiceProvider.GetRequiredService<ISltpOrderRepository>();
 
-                foreach (var (userId, settings) in _stateRepo.ActiveBots)
+                foreach (var (botId, settings) in _stateRepo.ActiveBots)
                 {
                     if (!settings.IsRunning)
                         continue;
-
+                    
                     var currency = settings.CurrencyPair;
                     var currentPrice = await exchangeClient.GetCurrencyPriceAsync(currency, stoppingToken);
                     if (currentPrice >= settings.UpperPrice ||
                         currentPrice <= settings.BottomPrice)
                     {
-                        await exchangeClient.CreateSellOrderAsync(currency, settings.Amount, stoppingToken);
-                        _stateRepo.ActiveBots.TryRemove(userId, out _);
+                        exchangeClient.SetUserId(settings.UserId);
+                        exchangeClient.SetExchange(settings.Exchange);
+                        
+                        var isOrderCreated = await exchangeClient
+                            .CreateSellOrderAsync(currency, settings.Amount, stoppingToken);
+                        var isBotRemoved = _stateRepo
+                            .ActiveBots
+                            .TryRemove(botId, out _);
+
+                        var exchangeId = await exchangeClient.GetExchangeIdByType(settings.Exchange, stoppingToken);
+                        var orderEntity = new SltpOrderEntity
+                        {
+                            Currency = currency,
+                            Amount = settings.Amount,
+                            SellPrice = currentPrice,
+                            UpperPrice = settings.UpperPrice,
+                            BottomPrice = settings.BottomPrice,
+                            ExchangeId = exchangeId,
+                            UserId = settings.UserId
+                        };
+                        await orderRepository.AddOrder(orderEntity);
                     }
                 }
 

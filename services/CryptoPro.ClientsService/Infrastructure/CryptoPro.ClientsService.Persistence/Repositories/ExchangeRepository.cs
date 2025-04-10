@@ -1,5 +1,6 @@
 ﻿using CryptoPro.ClientsService.Domain.Entities;
 using CryptoPro.ClientsService.Domain.Repositories;
+using CryptoPro.ClientsService.Domain.Types;
 using CryptoPro.ClientsService.Persistence.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,12 +23,21 @@ public sealed class ExchangeRepository : IExchangeRepository
             .ToListAsync();
     }
 
+    public async Task<int> GetExchangeIdByTypeAsync(ExchangeType exchangeType)
+    {
+        return (await _dbContext
+                .Exchanges
+                .AsNoTracking()
+                .FirstAsync(x => x.Type == exchangeType))
+                .Id;
+    }
+
     public async Task<bool> AddExchangeAsync(ExchangeEntity exchange)
     {
         await _dbContext
             .Exchanges
             .AddAsync(exchange);
-        
+
         return await _dbContext
             .SaveChangesAsync() > 0;
     }

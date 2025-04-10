@@ -6,5 +6,4 @@ public interface IBotService
 {
     Task<Guid> StartBotAsync(SltpSettingsCreateDto settings);
     Task<bool> StopBotAsync(Guid botId);
-    //Task CheckPricesAndExecuteTradesAsync(CancellationToken cancellationToken);
 }

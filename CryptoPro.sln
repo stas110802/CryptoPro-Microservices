@@ -75,6 +75,14 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "coins-service", "coins-service", "{F5ADFADE-9AC1-42C2-9D7D-48FE3BE1DC68}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "bots-service", "bots-service", "{B1E2F1CC-680F-4914-9670-A955758C5F04}"
+	ProjectSection(SolutionItems) = preProject
+		K8S\bots-service\redis-namespace.yaml = K8S\bots-service\redis-namespace.yaml
+		K8S\bots-service\redis-configmap.yaml = K8S\bots-service\redis-configmap.yaml
+		K8S\bots-service\redis-secret.yaml = K8S\bots-service\redis-secret.yaml
+		K8S\bots-service\redis-deployment.yaml = K8S\bots-service\redis-deployment.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "notify-service", "notify-service", "{EE9BB705-F939-49D4-8225-20A8AD236105}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -117,6 +125,7 @@ Global
 		{9511D5C2-7A97-4D1A-B785-D62F144CD53C} = {DBA967BC-F30C-4457-9528-3BD27692744C}
 		{F5ADFADE-9AC1-42C2-9D7D-48FE3BE1DC68} = {DBA967BC-F30C-4457-9528-3BD27692744C}
 		{B1E2F1CC-680F-4914-9670-A955758C5F04} = {DBA967BC-F30C-4457-9528-3BD27692744C}
+		{EE9BB705-F939-49D4-8225-20A8AD236105} = {DBA967BC-F30C-4457-9528-3BD27692744C}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{1D5D248E-E112-49D2-AC2F-9E666A562028}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

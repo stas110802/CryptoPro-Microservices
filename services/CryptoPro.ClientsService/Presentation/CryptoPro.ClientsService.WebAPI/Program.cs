@@ -1,5 +1,6 @@
 using System.Diagnostics;
-using System.Reflection;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Text;
 using CryptoPro.ClientsService.Application.Profilies;
 using CryptoPro.ClientsService.Application.Users.Queries.GetAllUsers;
@@ -13,6 +14,7 @@ using CryptoPro.ClientsService.WebAPI.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.OpenApi;
 using Microsoft.EntityFrameworkCore;
+
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Scalar.AspNetCore;
@@ -66,7 +68,8 @@ builder.Services
             ValidIssuer = builder.Configuration["Jwt:Issuer"],
             ValidAudience = builder.Configuration["Jwt:Audience"],
             IssuerSigningKey = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"]))
+                Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"])),
+            RoleClaimType = ClaimTypes.Role
         };
     });
 builder.Services.AddAuthorization();

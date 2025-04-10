@@ -21,19 +21,19 @@ public sealed class AccountController : ControllerBase
     }
 
     [HttpPost]
-    [Authorize]
     public async Task<ActionResult<IEnumerable<CurrencyBalance>>> GetAccountBalance(ExchangeType exchange)
     {
         var balances = await _mediator.Send(new GetAccountBalanceQuery(exchange));
-        
+
         return Ok(balances);
     }
 
-    [HttpPost("{currency}")]
-    public async Task<ActionResult<CurrencyBalance>> GetCurrencyAccountBalance(ExchangeType exchange, string currency)
+    [HttpPost("currencyBalance")]
+    public async Task<ActionResult<CurrencyBalance>> GetCurrencyAccountBalance(ExchangeType exchange,
+        [FromQuery] string currency)
     {
         var balance = await _mediator.Send(new GetCurrencyAccountBalanceQuery(exchange, currency));
-        
+
         return Ok(balance);
     }
 }
