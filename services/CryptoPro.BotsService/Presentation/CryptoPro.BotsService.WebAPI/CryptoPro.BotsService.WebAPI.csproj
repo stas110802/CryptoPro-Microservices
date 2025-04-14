@@ -34,6 +34,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\..\..\shared-libraries\CryptoPro.Common.Utilities\CryptoPro.Common.Utilities.csproj" />
       <ProjectReference Include="..\..\Core\CryptoPro.BotsService.Application\CryptoPro.BotsService.Application.csproj" />
       <ProjectReference Include="..\..\Infrastructure\CryptoPro.BotsService.Infrastructure\CryptoPro.BotsService.Infrastructure.csproj" />
       <ProjectReference Include="..\..\Infrastructure\CryptoPro.BotsService.Persistence\CryptoPro.BotsService.Persistence.csproj" />

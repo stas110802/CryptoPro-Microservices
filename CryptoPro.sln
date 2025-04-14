@@ -80,9 +80,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "notify-service", "notify-se
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "redis", "redis", "{A2D5113A-BC5D-441C-B2FE-9A47C357F441}"
 	ProjectSection(SolutionItems) = preProject
-		K8S\bots-service\redis-secret.yaml = K8S\bots-service\redis-secret.yaml
-		K8S\bots-service\redis-namespace.yaml = K8S\bots-service\redis-namespace.yaml
-		K8S\bots-service\redis-configmap.yaml = K8S\bots-service\redis-configmap.yaml
+		kubernetes\bots-service\redis\redis-configmap.yaml = kubernetes\bots-service\redis\redis-configmap.yaml
+		kubernetes\bots-service\redis\redis-deployment.yaml = kubernetes\bots-service\redis\redis-deployment.yaml
+		kubernetes\bots-service\redis\redis-namespace.yaml = kubernetes\bots-service\redis\redis-namespace.yaml
+		kubernetes\bots-service\redis\redis-secret.yaml = kubernetes\bots-service\redis\redis-secret.yaml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "rabbitmq", "rabbitmq", "{8ECEE92E-4159-44C7-9B74-C2D177C80947}"
@@ -102,6 +103,20 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoPro.Common.Contracts", "shared-libraries\CryptoPro.Common.Contracts\CryptoPro.Common.Contracts.csproj", "{66F14C21-C9ED-4E62-9DD1-E47345F87750}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoPro.Common.Infrastructure", "shared-libraries\CryptoPro.Common.Infrastructure\CryptoPro.Common.Infrastructure.csproj", "{6B3C8FDB-532B-44EB-B9D3-6B682795A9BC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "postgresql", "postgresql", "{A08C29A0-747A-42AF-8FD4-59A73C21878E}"
+	ProjectSection(SolutionItems) = preProject
+		kubernetes\clients-service\postgresql\postgresql-clients-deployment.yaml = kubernetes\clients-service\postgresql\postgresql-clients-deployment.yaml
+		kubernetes\clients-service\postgresql\local-pvc-clients.yaml = kubernetes\clients-service\postgresql\local-pvc-clients.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "service", "service", "{D2034D3B-10D0-421F-A8A9-FDA10D1D3E1F}"
+	ProjectSection(SolutionItems) = preProject
+		kubernetes\clients-service\service\clients-deployment.yaml = kubernetes\clients-service\service\clients-deployment.yaml
+		kubernetes\clients-service\service\ingress-srv-clients.yaml = kubernetes\clients-service\service\ingress-srv-clients.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "service", "service", "{722ECAAE-789C-4EC9-91A2-8A6BC3C0858F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -154,6 +169,9 @@ Global
 		{577C906C-7071-4001-94BC-7BE7E905BB65} = {84BDF361-9A10-4DF3-9E0E-04FCD832D0AF}
 		{66F14C21-C9ED-4E62-9DD1-E47345F87750} = {84BDF361-9A10-4DF3-9E0E-04FCD832D0AF}
 		{6B3C8FDB-532B-44EB-B9D3-6B682795A9BC} = {84BDF361-9A10-4DF3-9E0E-04FCD832D0AF}
+		{A08C29A0-747A-42AF-8FD4-59A73C21878E} = {9511D5C2-7A97-4D1A-B785-D62F144CD53C}
+		{D2034D3B-10D0-421F-A8A9-FDA10D1D3E1F} = {9511D5C2-7A97-4D1A-B785-D62F144CD53C}
+		{722ECAAE-789C-4EC9-91A2-8A6BC3C0858F} = {F5ADFADE-9AC1-42C2-9D7D-48FE3BE1DC68}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{1D5D248E-E112-49D2-AC2F-9E666A562028}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

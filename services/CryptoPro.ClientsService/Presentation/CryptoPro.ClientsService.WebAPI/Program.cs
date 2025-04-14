@@ -9,18 +9,15 @@ using CryptoPro.ClientsService.Infrastructure.Factories;
 using CryptoPro.ClientsService.Persistence.Data;
 using CryptoPro.ClientsService.Persistence.Repositories;
 using CryptoPro.ClientsService.WebAPI.Data;
+using CryptoPro.Common.Utilities.Schemes;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.OpenApi;
 using Microsoft.EntityFrameworkCore;
-
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
-//builder.Services.AddOpenApi();
 builder.Services.AddOpenApi("v1", options =>
 {
     options.AddDocumentTransformer<BearerSecuritySchemeTransformer>();
@@ -32,21 +29,19 @@ builder.Services.AddAutoMapper(typeof(UserProfile).Assembly);
 builder.Services.AddMediatR(config =>
     config.RegisterServicesFromAssembly(typeof(GetAllUsersQuery).Assembly));
 
-
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 builder.Services.AddDbContext<ClientsDbContext>(options =>
 {
-    options.UseNpgsql(builder.Configuration.GetConnectionString(nameof(ClientsDbContext)));
+    options.UseNpgsql("Host=postgres-clients-internal;Username=AkiraKilla;Password=SuperSecretPassword;Database=clientsServiceDb");
 });
 
 builder.Services.AddScoped<IApiSettingsRepository, ApiSettingsRepository>();
 builder.Services.AddScoped<IExchangeRepository, ExchangeRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IExchangeClientFactory, ExchangeClientFactory>();
-// builder.Services.AddScoped<IRestMarketClient, BinanceRestClient>();
-// builder.Services.AddScoped<IRestAccountClient, BinanceRestClient>();
-// builder.Services.AddScoped<IRestTradeClient, BinanceRestClient>();
 
 // JWT
+Console.WriteLine("Adding jwt...");
 builder.Services
     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -69,7 +64,7 @@ builder.Services.AddAuthorization();
 var app = builder.Build();
 
 var isProduction = app.Environment.IsProduction();
-if (isProduction is false)
+//if (isProduction is false)
 {
     app.MapOpenApi();
     app.MapScalarApiReference(options =>
@@ -78,10 +73,10 @@ if (isProduction is false)
             .WithTheme(ScalarTheme.Mars)
             .WithDefaultHttpClient(ScalarTarget.CSharp, ScalarClient.RestSharp);
     });
-    Process.Start(new ProcessStartInfo(
-            "cmd", "/c start http://localhost:5257/scalar/v1")
-        { CreateNoWindow = true }
-    );
+    // Process.Start(new ProcessStartInfo(
+    //         "cmd", "/c start http://localhost:5257/scalar/v1")
+    //     { CreateNoWindow = true }
+    // );
 }
 
 await PreparationDb.PrepPopulation(app, isProduction);
@@ -90,38 +85,3 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
-
-internal sealed class BearerSecuritySchemeTransformer(
-    Microsoft.AspNetCore.Authentication.IAuthenticationSchemeProvider authenticationSchemeProvider)
-    : IOpenApiDocumentTransformer
-{
-    public async Task TransformAsync(OpenApiDocument document, OpenApiDocumentTransformerContext context,
-        CancellationToken cancellationToken)
-    {
-        var authenticationSchemes = await authenticationSchemeProvider.GetAllSchemesAsync();
-        if (authenticationSchemes.Any(authScheme => authScheme.Name == "Bearer"))
-        {
-            var requirements = new Dictionary<string, OpenApiSecurityScheme>
-            {
-                ["Bearer"] = new OpenApiSecurityScheme
-                {
-                    Type = SecuritySchemeType.Http,
-                    Scheme = "bearer",
-                    In = ParameterLocation.Header,
-                    BearerFormat = "Json Web Token"
-                }
-            };
-            document.Components ??= new OpenApiComponents();
-            document.Components.SecuritySchemes = requirements;
-
-            foreach (var operation in document.Paths.Values.SelectMany(path => path.Operations))
-            {
-                operation.Value.Security.Add(new OpenApiSecurityRequirement
-                {
-                    [new OpenApiSecurityScheme { Reference = new OpenApiReference { Id = "Bearer", Type = ReferenceType.SecurityScheme } }] =
-                        Array.Empty<string>()
-                });
-            }
-        }
-    }
-}

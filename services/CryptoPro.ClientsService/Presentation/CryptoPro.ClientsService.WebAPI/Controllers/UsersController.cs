@@ -42,7 +42,7 @@ public sealed class UsersController : ControllerBase
     public async Task<ActionResult<bool>> CreateUser(UserCreateDto user)
     {
         var isSuccessful = await _mediator.Send(new CreateUserCommand(user));
-
+        
         return Ok(isSuccessful);
     }
     

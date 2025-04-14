@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CryptoPro.ClientsService.Persistence.Migrations
 {
     [DbContext(typeof(ClientsDbContext))]
-    [Migration("20250406170709_InitialCreate")]
+    [Migration("20250411124942_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
